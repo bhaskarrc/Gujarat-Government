@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tablabs.model.Inward_Entry;
-import com.tablabs.service.UserService;
+import com.tablabs.service.InwardService;
 
 @RestController
 public class InwardController {
 
 	@Autowired
-	UserService service;
+	InwardService service;
 
 	@PostMapping("/submit")
 	public String submitEntry(@RequestBody Inward_Entry inputEntity) {
