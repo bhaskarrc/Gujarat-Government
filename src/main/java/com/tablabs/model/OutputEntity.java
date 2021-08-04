@@ -2,64 +2,143 @@ package com.tablabs.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class OutputEntity {
-	int serialNumber;
-	Date date;
-	String toEntity;
-	String fromUnit;
-	String sendingMode;
+
+	@Id
+	int id;
+
+	String outwardNumber;
+	Date outwardDate;
+	String letterType;
+	String letterNumber;
+	Date letterDate;
+	String inwardLetterNo;
+	String to;
+	String from;
+	String outwardMode;
+	int amount;
+	String remarks;
 
 	public OutputEntity() {
 		super();
 	}
 
-	public OutputEntity(int serialNumber, Date date, String toEntity, String fromUnit, String sendingMode) {
+	public OutputEntity(int id, String outwardNumber, Date outwardDate, String letterType, String letterNumber,
+			Date letterDate, String inwardLetterNo, String to, String from, String outwardMode, int amount,
+			String remarks) {
 		super();
-		this.serialNumber = serialNumber;
-		this.date = date;
-		this.toEntity = toEntity;
-		this.fromUnit = fromUnit;
-		this.sendingMode = sendingMode;
+		this.id = id;
+		this.outwardNumber = outwardNumber;
+		this.outwardDate = outwardDate;
+		this.letterType = letterType;
+		this.letterNumber = letterNumber;
+		this.letterDate = letterDate;
+		this.inwardLetterNo = inwardLetterNo;
+		this.to = to;
+		this.from = from;
+		this.outwardMode = outwardMode;
+		this.amount = amount;
+		this.remarks = remarks;
 	}
 
-	public int getSerialNumber() {
-		return serialNumber;
+	public int getId() {
+		return id;
 	}
 
-	public void setSerialNumber(int serialNumber) {
-		this.serialNumber = serialNumber;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getOutwardNumber() {
+		return outwardNumber;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setOutwardNumber(String outwardNumber) {
+		this.outwardNumber = outwardNumber;
 	}
 
-	public String getToEntity() {
-		return toEntity;
+	public Date getOutwardDate() {
+		return outwardDate;
 	}
 
-	public void setToEntity(String toEntity) {
-		this.toEntity = toEntity;
+	public void setOutwardDate(Date outwardDate) {
+		this.outwardDate = outwardDate;
 	}
 
-	public String getFromUnit() {
-		return fromUnit;
+	public String getLetterType() {
+		return letterType;
 	}
 
-	public void setFromUnit(String fromUnit) {
-		this.fromUnit = fromUnit;
+	public void setLetterType(String letterType) {
+		this.letterType = letterType;
 	}
 
-	public String getSendingMode() {
-		return sendingMode;
+	public String getLetterNumber() {
+		return letterNumber;
 	}
 
-	public void setSendingMode(String sendingMode) {
-		this.sendingMode = sendingMode;
+	public void setLetterNumber(String letterNumber) {
+		this.letterNumber = letterNumber;
+	}
+
+	public Date getLetterDate() {
+		return letterDate;
+	}
+
+	public void setLetterDate(Date letterDate) {
+		this.letterDate = letterDate;
+	}
+
+	public String getInwardLetterNo() {
+		return inwardLetterNo;
+	}
+
+	public void setInwardLetterNo(String inwardLetterNo) {
+		this.inwardLetterNo = inwardLetterNo;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getOutwardMode() {
+		return outwardMode;
+	}
+
+	public void setOutwardMode(String outwardMode) {
+		this.outwardMode = outwardMode;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 }
