@@ -16,6 +16,7 @@ public class InputEntry {
 	String letterType;
 	String lettterNumber;
 	Date letterDate;
+	String letterDetail;
 	String from;
 	String branchName;
 	String empName;
@@ -25,7 +26,7 @@ public class InputEntry {
 	}
 
 	public InputEntry(int id, int inwardNumber, Date inwardDate, String letterType, String lettterNumber,
-			Date letterDate, String from, String branchName, String empName) {
+			Date letterDate, String letterDetail, String from, String branchName, String empName) {
 		super();
 		this.id = id;
 		this.inwardNumber = inwardNumber;
@@ -33,6 +34,7 @@ public class InputEntry {
 		this.letterType = letterType;
 		this.lettterNumber = lettterNumber;
 		this.letterDate = letterDate;
+		this.letterDetail = letterDetail;
 		this.from = from;
 		this.branchName = branchName;
 		this.empName = empName;
@@ -84,6 +86,14 @@ public class InputEntry {
 
 	public void setLetterDate(Date letterDate) {
 		this.letterDate = letterDate;
+	}
+
+	public String getLetterDetail() {
+		return letterDetail;
+	}
+
+	public void setLetterDetail(String letterDetail) {
+		this.letterDetail = letterDetail;
 	}
 
 	public String getFrom() {

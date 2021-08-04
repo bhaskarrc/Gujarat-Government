@@ -32,7 +32,7 @@ public class InwardController {
 		return "Data updated succesfully!";
 	}
 
-	@GetMapping("get/{id}")
+	@GetMapping("/get/{id}")
 	public InputEntry getUser(@PathVariable int id) {
 		return null;
 	}

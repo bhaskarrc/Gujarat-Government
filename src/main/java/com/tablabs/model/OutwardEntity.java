@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class OutputEntity {
+public class OutwardEntity {
 
 	@Id
 	int id;
@@ -15,29 +15,24 @@ public class OutputEntity {
 	Date outwardDate;
 	String letterType;
 	String letterNumber;
-	Date letterDate;
-	String inwardLetterNo;
 	String to;
 	String from;
 	String outwardMode;
 	int amount;
 	String remarks;
 
-	public OutputEntity() {
+	public OutwardEntity() {
 		super();
 	}
 
-	public OutputEntity(int id, String outwardNumber, Date outwardDate, String letterType, String letterNumber,
-			Date letterDate, String inwardLetterNo, String to, String from, String outwardMode, int amount,
-			String remarks) {
+	public OutwardEntity(int id, String outwardNumber, Date outwardDate, String letterType, String letterNumber,
+			String to, String from, String outwardMode, int amount, String remarks) {
 		super();
 		this.id = id;
 		this.outwardNumber = outwardNumber;
 		this.outwardDate = outwardDate;
 		this.letterType = letterType;
 		this.letterNumber = letterNumber;
-		this.letterDate = letterDate;
-		this.inwardLetterNo = inwardLetterNo;
 		this.to = to;
 		this.from = from;
 		this.outwardMode = outwardMode;
@@ -83,22 +78,6 @@ public class OutputEntity {
 
 	public void setLetterNumber(String letterNumber) {
 		this.letterNumber = letterNumber;
-	}
-
-	public Date getLetterDate() {
-		return letterDate;
-	}
-
-	public void setLetterDate(Date letterDate) {
-		this.letterDate = letterDate;
-	}
-
-	public String getInwardLetterNo() {
-		return inwardLetterNo;
-	}
-
-	public void setInwardLetterNo(String inwardLetterNo) {
-		this.inwardLetterNo = inwardLetterNo;
 	}
 
 	public String getTo() {
