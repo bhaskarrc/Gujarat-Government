@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class InputEntry {
+public class InwardEntry {
 
 	@Id
 	int id;
@@ -21,11 +21,11 @@ public class InputEntry {
 	String branchName;
 	String empName;
 
-	public InputEntry() {
+	public InwardEntry() {
 		super();
 	}
 
-	public InputEntry(int id, int inwardNumber, Date inwardDate, String letterType, String lettterNumber,
+	public InwardEntry(int id, int inwardNumber, Date inwardDate, String letterType, String lettterNumber,
 			Date letterDate, String letterDetail, String from, String branchName, String empName) {
 		super();
 		this.id = id;

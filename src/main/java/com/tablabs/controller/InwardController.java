@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tablabs.model.InputEntry;
+import com.tablabs.model.InwardEntry;
 import com.tablabs.service.UserService;
 
 @RestController
@@ -21,7 +22,7 @@ public class InwardController {
 	UserService service;
 
 	@PostMapping("/submit")
-	public String submitEntry(@RequestBody InputEntry inputEntity) {
+	public String submitEntry(@RequestBody InwardEntry inputEntity) {
 		// database insertion stmt
 		return "Data submitted succesfully!";
 	}
@@ -32,8 +33,8 @@ public class InwardController {
 		return "Data updated succesfully!";
 	}
 
-	@GetMapping("/get/{id}")
-	public InputEntry getUser(@PathVariable int id) {
+	@GetMapping("/get")
+	public InwardEntry getUser(@RequestParam Map<String, String> allParams) {
 		return null;
 	}
 
