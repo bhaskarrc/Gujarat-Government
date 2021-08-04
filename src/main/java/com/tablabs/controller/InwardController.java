@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tablabs.model.InwardEntry;
+import com.tablabs.model.Inward_Entry;
 import com.tablabs.service.UserService;
 
 @RestController
@@ -22,7 +22,7 @@ public class InwardController {
 	UserService service;
 
 	@PostMapping("/submit")
-	public String submitEntry(@RequestBody InwardEntry inputEntity) {
+	public String submitEntry(@RequestBody Inward_Entry inputEntity) {
 		// database insertion stmt
 		return "Data submitted succesfully!";
 	}
@@ -34,7 +34,7 @@ public class InwardController {
 	}
 
 	@GetMapping("/get")
-	public InwardEntry getUser(@RequestParam Map<String, String> allParams) {
+	public Inward_Entry getUser(@RequestParam Map<String, String> allParams) {
 		return null;
 	}
 

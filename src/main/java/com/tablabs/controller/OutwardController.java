@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tablabs.model.OutwardEntity;
+import com.tablabs.model.Outward_Entry;
 import com.tablabs.model.OutwardListing;
 import com.tablabs.service.UserService;
 
@@ -25,7 +25,7 @@ public class OutwardController {
 	UserService service;
 
 	@PostMapping("/save")
-	public String saveEntry(@RequestBody OutwardEntity outputEntity) {
+	public String saveEntry(@RequestBody Outward_Entry outputEntity) {
 		// database insertion stmt
 		return "Data saved succesfully!";
 	}
@@ -37,7 +37,7 @@ public class OutwardController {
 	}
 
 	@GetMapping("/get")
-	public OutwardEntity getUser(@RequestParam Map<String, String> allParams) {
+	public Outward_Entry getUser(@RequestParam Map<String, String> allParams) {
 		return null;
 	}
 
