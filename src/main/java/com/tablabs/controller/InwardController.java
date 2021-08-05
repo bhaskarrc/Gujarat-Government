@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tablabs.DTO.Inward_Entry_DTO;
 import com.tablabs.model.Inward_Entry;
 import com.tablabs.service.InwardService;
 
@@ -39,7 +37,7 @@ public class InwardController {
 	@PutMapping("/update/{id}")
 	public void updateEntry(@RequestBody Map<String, String> inwardEntry, String id) {
 		Inward_Entry fetchInwardEntry = service.getInwardEntry(id);
-		
+
 		if (id != null) {
 			if (inwardEntry.get("inward_no") != null
 					&& Long.parseLong(inwardEntry.get("inward_no")) != fetchInwardEntry.getInward_no()) {
@@ -52,8 +50,8 @@ public class InwardController {
 			}
 
 			if (inwardEntry.get("letter_type_id") != null
-					&& Integer.parseInt(inwardEntry.get("letter_type_id")) != fetchInwardEntry.getLetter_type_id()) {
-				fetchInwardEntry.setLetter_type_id(Integer.parseInt(inwardEntry.get("letter_type_id")));
+					&& Long.parseLong(inwardEntry.get("letter_type_id")) != fetchInwardEntry.getLetter_type_id()) {
+				fetchInwardEntry.setLetter_type_id(Long.parseLong(inwardEntry.get("letter_type_id")));
 			}
 
 			if (inwardEntry.get("letter_type") != null

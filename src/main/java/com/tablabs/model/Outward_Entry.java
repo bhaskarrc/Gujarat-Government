@@ -1,7 +1,7 @@
 package com.tablabs.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,15 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TDOI_OUTWARD_ENTRY", schema="DOI")
+@Table(name = "TDOI_OUTWARD_ENTRY", schema = "DOI")
 public class Outward_Entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long outward_id;
-	
+
 	long outward_no;
-	Date outward_dt;
+	LocalDate outward_dt;
 	long letter_type_id;
 	String letter_type;
 	String inward_letter_no;
@@ -42,11 +42,11 @@ public class Outward_Entry {
 		super();
 	}
 
-	public Outward_Entry(long outward_id, long outward_no, Date outward_dt, long letter_type_id, String letter_type,
-			String inward_letter_no, String letter_details, String sent_to_details, long frm_branch_id,
-			long outward_mode_id, double outward_amt, String remarks, String reference_no, LocalDateTime reference_dt,
-			int active_status, LocalDateTime created_date, long created_by, long created_by_post,
-			LocalDateTime updated_date, long updated_by, long updated_by_post) {
+	public Outward_Entry(long outward_id, long outward_no, LocalDate outward_dt, long letter_type_id,
+			String letter_type, String inward_letter_no, String letter_details, String sent_to_details,
+			long frm_branch_id, long outward_mode_id, double outward_amt, String remarks, String reference_no,
+			LocalDateTime reference_dt, int active_status, LocalDateTime created_date, long created_by,
+			long created_by_post, LocalDateTime updated_date, long updated_by, long updated_by_post) {
 		super();
 		this.outward_id = outward_id;
 		this.outward_no = outward_no;
@@ -87,11 +87,11 @@ public class Outward_Entry {
 		this.outward_no = outward_no;
 	}
 
-	public Date getOutward_dt() {
+	public LocalDate getOutward_dt() {
 		return outward_dt;
 	}
 
-	public void setOutward_dt(Date outward_dt) {
+	public void setOutward_dt(LocalDate outward_dt) {
 		this.outward_dt = outward_dt;
 	}
 

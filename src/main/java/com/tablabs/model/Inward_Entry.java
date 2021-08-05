@@ -19,7 +19,7 @@ public class Inward_Entry {
 
 	long inward_no;
 	LocalDate inward_dt;
-	int letter_type_id;
+	long letter_type_id;
 	String letter_type;
 	String letter_no;
 	LocalDate letter_dt;
@@ -42,7 +42,7 @@ public class Inward_Entry {
 		super();
 	}
 
-	public Inward_Entry(long inward_id, long inward_no, LocalDate inward_dt, int letter_type_id, String letter_type,
+	public Inward_Entry(long inward_id, long inward_no, LocalDate inward_dt, long letter_type_id, String letter_type,
 			String letter_no, LocalDate letter_dt, String letter_details, String from_where_details, long doi_branch_id,
 			long doi_employee_id, String doi_employee_name, String reference_no, LocalDateTime reference_dt,
 			int active_status, LocalDateTime created_date, long created_by, long created_by_post,
@@ -95,11 +95,11 @@ public class Inward_Entry {
 		this.inward_dt = inward_dt;
 	}
 
-	public int getLetter_type_id() {
+	public long getLetter_type_id() {
 		return letter_type_id;
 	}
 
-	public void setLetter_type_id(int letter_type_id) {
+	public void setLetter_type_id(long letter_type_id) {
 		this.letter_type_id = letter_type_id;
 	}
 
