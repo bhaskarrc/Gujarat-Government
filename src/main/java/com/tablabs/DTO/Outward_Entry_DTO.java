@@ -1,33 +1,23 @@
-package com.tablabs.model;
+package com.tablabs.DTO;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class Outward_Entry_DTO {
 
-@Entity
-@Table(name = "TDOI_INWARD_ENTRY", schema = "DOI")
-public class Inward_Entry {
+	long outward_id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long inward_id;
-
-	long inward_no;
-	LocalDate inward_dt;
-	int letter_type_id;
+	long outward_no;
+	Date outward_dt;
+	long letter_type_id;
 	String letter_type;
-	String letter_no;
-	LocalDate letter_dt;
+	String inward_letter_no;
 	String letter_details;
-	String from_where_details;
-	long doi_branch_id;
-	long doi_employee_id;
-	String doi_employee_name;
+	String sent_to_details;
+	long frm_branch_id;
+	long outward_mode_id;
+	double outward_amt;
+	String remarks;
 	String reference_no;
 	LocalDateTime reference_dt;
 	int active_status;
@@ -38,28 +28,28 @@ public class Inward_Entry {
 	long updated_by;
 	long updated_by_post;
 
-	public Inward_Entry() {
+	public Outward_Entry_DTO() {
 		super();
 	}
 
-	public Inward_Entry(long inward_id, long inward_no, LocalDate inward_dt, int letter_type_id, String letter_type,
-			String letter_no, LocalDate letter_dt, String letter_details, String from_where_details, long doi_branch_id,
-			long doi_employee_id, String doi_employee_name, String reference_no, LocalDateTime reference_dt,
+	public Outward_Entry_DTO(long outward_id, long outward_no, Date outward_dt, long letter_type_id, String letter_type,
+			String inward_letter_no, String letter_details, String sent_to_details, long frm_branch_id,
+			long outward_mode_id, double outward_amt, String remarks, String reference_no, LocalDateTime reference_dt,
 			int active_status, LocalDateTime created_date, long created_by, long created_by_post,
 			LocalDateTime updated_date, long updated_by, long updated_by_post) {
 		super();
-		this.inward_id = inward_id;
-		this.inward_no = inward_no;
-		this.inward_dt = inward_dt;
+		this.outward_id = outward_id;
+		this.outward_no = outward_no;
+		this.outward_dt = outward_dt;
 		this.letter_type_id = letter_type_id;
 		this.letter_type = letter_type;
-		this.letter_no = letter_no;
-		this.letter_dt = letter_dt;
+		this.inward_letter_no = inward_letter_no;
 		this.letter_details = letter_details;
-		this.from_where_details = from_where_details;
-		this.doi_branch_id = doi_branch_id;
-		this.doi_employee_id = doi_employee_id;
-		this.doi_employee_name = doi_employee_name;
+		this.sent_to_details = sent_to_details;
+		this.frm_branch_id = frm_branch_id;
+		this.outward_mode_id = outward_mode_id;
+		this.outward_amt = outward_amt;
+		this.remarks = remarks;
 		this.reference_no = reference_no;
 		this.reference_dt = reference_dt;
 		this.active_status = active_status;
@@ -71,35 +61,35 @@ public class Inward_Entry {
 		this.updated_by_post = updated_by_post;
 	}
 
-	public long getInward_id() {
-		return inward_id;
+	public long getOutward_id() {
+		return outward_id;
 	}
 
-	public void setInward_id(long inward_id) {
-		this.inward_id = inward_id;
+	public void setOutward_id(long outward_id) {
+		this.outward_id = outward_id;
 	}
 
-	public long getInward_no() {
-		return inward_no;
+	public long getOutward_no() {
+		return outward_no;
 	}
 
-	public void setInward_no(long inward_no) {
-		this.inward_no = inward_no;
+	public void setOutward_no(long outward_no) {
+		this.outward_no = outward_no;
 	}
 
-	public LocalDate getInward_dt() {
-		return inward_dt;
+	public Date getOutward_dt() {
+		return outward_dt;
 	}
 
-	public void setInward_dt(LocalDate inward_dt) {
-		this.inward_dt = inward_dt;
+	public void setOutward_dt(Date outward_dt) {
+		this.outward_dt = outward_dt;
 	}
 
-	public int getLetter_type_id() {
+	public long getLetter_type_id() {
 		return letter_type_id;
 	}
 
-	public void setLetter_type_id(int letter_type_id) {
+	public void setLetter_type_id(long letter_type_id) {
 		this.letter_type_id = letter_type_id;
 	}
 
@@ -111,20 +101,12 @@ public class Inward_Entry {
 		this.letter_type = letter_type;
 	}
 
-	public String getLetter_no() {
-		return letter_no;
+	public String getInward_letter_no() {
+		return inward_letter_no;
 	}
 
-	public void setLetter_no(String letter_no) {
-		this.letter_no = letter_no;
-	}
-
-	public LocalDate getLetter_dt() {
-		return letter_dt;
-	}
-
-	public void setLetter_dt(LocalDate letter_dt) {
-		this.letter_dt = letter_dt;
+	public void setInward_letter_no(String inward_letter_no) {
+		this.inward_letter_no = inward_letter_no;
 	}
 
 	public String getLetter_details() {
@@ -135,36 +117,44 @@ public class Inward_Entry {
 		this.letter_details = letter_details;
 	}
 
-	public String getFrom_where_details() {
-		return from_where_details;
+	public String getSent_to_details() {
+		return sent_to_details;
 	}
 
-	public void setFrom_where_details(String from_where_details) {
-		this.from_where_details = from_where_details;
+	public void setSent_to_details(String sent_to_details) {
+		this.sent_to_details = sent_to_details;
 	}
 
-	public long getDoi_branch_id() {
-		return doi_branch_id;
+	public long getFrm_branch_id() {
+		return frm_branch_id;
 	}
 
-	public void setDoi_branch_id(long doi_branch_id) {
-		this.doi_branch_id = doi_branch_id;
+	public void setFrm_branch_id(long frm_branch_id) {
+		this.frm_branch_id = frm_branch_id;
 	}
 
-	public long getDoi_employee_id() {
-		return doi_employee_id;
+	public long getOutward_mode_id() {
+		return outward_mode_id;
 	}
 
-	public void setDoi_employee_id(long doi_employee_id) {
-		this.doi_employee_id = doi_employee_id;
+	public void setOutward_mode_id(long outward_mode_id) {
+		this.outward_mode_id = outward_mode_id;
 	}
 
-	public String getDoi_employee_name() {
-		return doi_employee_name;
+	public double getOutward_amt() {
+		return outward_amt;
 	}
 
-	public void setDoi_employee_name(String doi_employee_name) {
-		this.doi_employee_name = doi_employee_name;
+	public void setOutward_amt(double outward_amt) {
+		this.outward_amt = outward_amt;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	public String getReference_no() {

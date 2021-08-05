@@ -1,28 +1,17 @@
-package com.tablabs.model;
+package com.tablabs.DTO;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class Inward_Entry_DTO {
 
-@Entity
-@Table(name = "TDOI_INWARD_ENTRY", schema = "DOI")
-public class Inward_Entry {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long inward_id;
-
 	long inward_no;
-	LocalDate inward_dt;
+	Date inward_dt;
 	int letter_type_id;
 	String letter_type;
 	String letter_no;
-	LocalDate letter_dt;
+	Date letter_dt;
 	String letter_details;
 	String from_where_details;
 	long doi_branch_id;
@@ -38,12 +27,12 @@ public class Inward_Entry {
 	long updated_by;
 	long updated_by_post;
 
-	public Inward_Entry() {
+	public Inward_Entry_DTO() {
 		super();
 	}
 
-	public Inward_Entry(long inward_id, long inward_no, LocalDate inward_dt, int letter_type_id, String letter_type,
-			String letter_no, LocalDate letter_dt, String letter_details, String from_where_details, long doi_branch_id,
+	public Inward_Entry_DTO(long inward_id, long inward_no, Date inward_dt, int letter_type_id, String letter_type,
+			String letter_no, Date letter_dt, String letter_details, String from_where_details, long doi_branch_id,
 			long doi_employee_id, String doi_employee_name, String reference_no, LocalDateTime reference_dt,
 			int active_status, LocalDateTime created_date, long created_by, long created_by_post,
 			LocalDateTime updated_date, long updated_by, long updated_by_post) {
@@ -87,11 +76,11 @@ public class Inward_Entry {
 		this.inward_no = inward_no;
 	}
 
-	public LocalDate getInward_dt() {
+	public Date getInward_dt() {
 		return inward_dt;
 	}
 
-	public void setInward_dt(LocalDate inward_dt) {
+	public void setInward_dt(Date inward_dt) {
 		this.inward_dt = inward_dt;
 	}
 
@@ -119,11 +108,11 @@ public class Inward_Entry {
 		this.letter_no = letter_no;
 	}
 
-	public LocalDate getLetter_dt() {
+	public Date getLetter_dt() {
 		return letter_dt;
 	}
 
-	public void setLetter_dt(LocalDate letter_dt) {
+	public void setLetter_dt(Date letter_dt) {
 		this.letter_dt = letter_dt;
 	}
 
