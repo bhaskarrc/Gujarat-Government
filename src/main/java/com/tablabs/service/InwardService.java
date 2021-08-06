@@ -13,8 +13,28 @@ public class InwardService {
 	InwardRepository inwardRepository;
 
 	public Inward_Entry getInwardEntryByFields(Inward_Entry_DTO inwardDto) {
+
+	}
+
+	public Inward_Entry getInwardEntryByDate() {
+	}
+
+	public Inward_Entry getInwardEntryByLettertype() {
+
+	}
+
+	public Inward_Entry getInwardEntryByInwardDateAndLettertype() {
+
+	}
+
+	public Inward_Entry getInwardEntryByInwardDateAndFromWhereDetails() {
+
+	}
+	
+	public Inward_Entry getInwardEntryByLetterTypeAndFromWhereDetails() {
 		
 	}
+	
 
 	public Inward_Entry getInwardEntry(String id) {
 		return inwardRepository.findById(Long.parseLong(id)).get();

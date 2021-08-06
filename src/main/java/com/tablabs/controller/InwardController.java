@@ -45,6 +45,7 @@ public class InwardController {
 			case "date_type":
 				entryDto.setDate_type(entry.getValue());
 				break;
+
 			case "from_date":
 				entryDto.setFrom_date(LocalDate.parse(entry.getValue()));
 				break;
@@ -69,9 +70,9 @@ public class InwardController {
 				entryDto.setStatus(entry.getValue());
 				break;
 			}
-
-			service.getInwardEntryByFields(entryDto);
 		}
+
+		service.getInwardEntryByFields(entryDto);
 
 	}
 
