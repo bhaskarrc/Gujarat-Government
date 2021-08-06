@@ -1,95 +1,57 @@
 package com.tablabs.DTO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Inward_Entry_DTO {
 
-	long inward_id;
-	long inward_no;
-	Date inward_dt;
-	int letter_type_id;
+	String date_type;
+	LocalDate from_date;
+	LocalDate end_date;
 	String letter_type;
-	String letter_no;
-	Date letter_dt;
-	String letter_details;
-	String from_where_details;
-	long doi_branch_id;
-	long doi_employee_id;
-	String doi_employee_name;
-	String reference_no;
-	LocalDateTime reference_dt;
-	int active_status;
-	LocalDateTime created_date;
-	long created_by;
-	long created_by_post;
-	LocalDateTime updated_date;
-	long updated_by;
-	long updated_by_post;
+	String branch_name;
+	String letter_received_from;
+	String status;
 
 	public Inward_Entry_DTO() {
 		super();
 	}
 
-	public Inward_Entry_DTO(long inward_id, long inward_no, Date inward_dt, int letter_type_id, String letter_type,
-			String letter_no, Date letter_dt, String letter_details, String from_where_details, long doi_branch_id,
-			long doi_employee_id, String doi_employee_name, String reference_no, LocalDateTime reference_dt,
-			int active_status, LocalDateTime created_date, long created_by, long created_by_post,
-			LocalDateTime updated_date, long updated_by, long updated_by_post) {
+	public Inward_Entry_DTO(String date_type, LocalDate from_date, LocalDate end_date, String letter_type,
+			String branch_name, String letter_received_from, String status) {
 		super();
-		this.inward_id = inward_id;
-		this.inward_no = inward_no;
-		this.inward_dt = inward_dt;
-		this.letter_type_id = letter_type_id;
+		this.date_type = date_type;
+		this.from_date = from_date;
+		this.end_date = end_date;
 		this.letter_type = letter_type;
-		this.letter_no = letter_no;
-		this.letter_dt = letter_dt;
-		this.letter_details = letter_details;
-		this.from_where_details = from_where_details;
-		this.doi_branch_id = doi_branch_id;
-		this.doi_employee_id = doi_employee_id;
-		this.doi_employee_name = doi_employee_name;
-		this.reference_no = reference_no;
-		this.reference_dt = reference_dt;
-		this.active_status = active_status;
-		this.created_date = created_date;
-		this.created_by = created_by;
-		this.created_by_post = created_by_post;
-		this.updated_date = updated_date;
-		this.updated_by = updated_by;
-		this.updated_by_post = updated_by_post;
+		this.branch_name = branch_name;
+		this.letter_received_from = letter_received_from;
+		this.status = status;
 	}
 
-	public long getInward_id() {
-		return inward_id;
+	public String getDate_type() {
+		return date_type;
 	}
 
-	public void setInward_id(long inward_id) {
-		this.inward_id = inward_id;
+	public void setDate_type(String date_type) {
+		this.date_type = date_type;
 	}
 
-	public long getInward_no() {
-		return inward_no;
+	public LocalDate getFrom_date() {
+		return from_date;
 	}
 
-	public void setInward_no(long inward_no) {
-		this.inward_no = inward_no;
+	public void setFrom_date(LocalDate from_date) {
+		this.from_date = from_date;
 	}
 
-	public Date getInward_dt() {
-		return inward_dt;
+	public LocalDate getEnd_date() {
+		return end_date;
 	}
 
-	public void setInward_dt(Date inward_dt) {
-		this.inward_dt = inward_dt;
-	}
-
-	public int getLetter_type_id() {
-		return letter_type_id;
-	}
-
-	public void setLetter_type_id(int letter_type_id) {
-		this.letter_type_id = letter_type_id;
+	public void setEnd_date(LocalDate end_date) {
+		this.end_date = end_date;
 	}
 
 	public String getLetter_type() {
@@ -100,132 +62,28 @@ public class Inward_Entry_DTO {
 		this.letter_type = letter_type;
 	}
 
-	public String getLetter_no() {
-		return letter_no;
+	public String getBranch_name() {
+		return branch_name;
 	}
 
-	public void setLetter_no(String letter_no) {
-		this.letter_no = letter_no;
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
 	}
 
-	public Date getLetter_dt() {
-		return letter_dt;
+	public String getLetter_received_from() {
+		return letter_received_from;
 	}
 
-	public void setLetter_dt(Date letter_dt) {
-		this.letter_dt = letter_dt;
+	public void setLetter_received_from(String letter_received_from) {
+		this.letter_received_from = letter_received_from;
 	}
 
-	public String getLetter_details() {
-		return letter_details;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setLetter_details(String letter_details) {
-		this.letter_details = letter_details;
-	}
-
-	public String getFrom_where_details() {
-		return from_where_details;
-	}
-
-	public void setFrom_where_details(String from_where_details) {
-		this.from_where_details = from_where_details;
-	}
-
-	public long getDoi_branch_id() {
-		return doi_branch_id;
-	}
-
-	public void setDoi_branch_id(long doi_branch_id) {
-		this.doi_branch_id = doi_branch_id;
-	}
-
-	public long getDoi_employee_id() {
-		return doi_employee_id;
-	}
-
-	public void setDoi_employee_id(long doi_employee_id) {
-		this.doi_employee_id = doi_employee_id;
-	}
-
-	public String getDoi_employee_name() {
-		return doi_employee_name;
-	}
-
-	public void setDoi_employee_name(String doi_employee_name) {
-		this.doi_employee_name = doi_employee_name;
-	}
-
-	public String getReference_no() {
-		return reference_no;
-	}
-
-	public void setReference_no(String reference_no) {
-		this.reference_no = reference_no;
-	}
-
-	public LocalDateTime getReference_dt() {
-		return reference_dt;
-	}
-
-	public void setReference_dt(LocalDateTime reference_dt) {
-		this.reference_dt = reference_dt;
-	}
-
-	public int getActive_status() {
-		return active_status;
-	}
-
-	public void setActive_status(int active_status) {
-		this.active_status = active_status;
-	}
-
-	public LocalDateTime getCreated_date() {
-		return created_date;
-	}
-
-	public void setCreated_date(LocalDateTime created_date) {
-		this.created_date = created_date;
-	}
-
-	public long getCreated_by() {
-		return created_by;
-	}
-
-	public void setCreated_by(long created_by) {
-		this.created_by = created_by;
-	}
-
-	public long getCreated_by_post() {
-		return created_by_post;
-	}
-
-	public void setCreated_by_post(long created_by_post) {
-		this.created_by_post = created_by_post;
-	}
-
-	public LocalDateTime getUpdated_date() {
-		return updated_date;
-	}
-
-	public void setUpdated_date(LocalDateTime updated_date) {
-		this.updated_date = updated_date;
-	}
-
-	public long getUpdated_by() {
-		return updated_by;
-	}
-
-	public void setUpdated_by(long updated_by) {
-		this.updated_by = updated_by;
-	}
-
-	public long getUpdated_by_post() {
-		return updated_by_post;
-	}
-
-	public void setUpdated_by_post(long updated_by_post) {
-		this.updated_by_post = updated_by_post;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

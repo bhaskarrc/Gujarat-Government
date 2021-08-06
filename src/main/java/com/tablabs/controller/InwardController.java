@@ -2,9 +2,13 @@ package com.tablabs.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tablabs.DTO.Inward_Entry_DTO;
 import com.tablabs.model.Inward_Entry;
 import com.tablabs.service.InwardService;
 
@@ -29,9 +34,45 @@ public class InwardController {
 		return "Data entered succesfully!";
 	}
 
-	@GetMapping("/get/{id}")
-	public Inward_Entry getUser(@RequestParam String id) {
-		return this.service.getInwardEntry(id);
+	@GetMapping("/get")
+	public Inward_Entry_DTO getUser(@RequestParam Map<String, String> inwardEntry) {
+
+		Inward_Entry_DTO entryDto = new Inward_Entry_DTO();
+
+		for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
+
+			switch (entry.getKey()) {
+			case "date_type":
+				entryDto.setDate_type(entry.getValue());
+				break;
+			case "from_date":
+				entryDto.setFrom_date(LocalDate.parse(entry.getValue()));
+				break;
+
+			case "end_date":
+				entryDto.setEnd_date(LocalDate.parse(entry.getValue()));
+				break;
+
+			case "letter_type":
+				entryDto.setLetter_type(entry.getValue());
+				break;
+
+			case "branch_name":
+				entryDto.setBranch_name(entry.getValue());
+				break;
+
+			case "letter_received_from":
+				entryDto.setLetter_received_from(entry.getValue());
+				break;
+
+			case "status":
+				entryDto.setStatus(entry.getValue());
+				break;
+			}
+
+			service.getInwardEntryByFields(entryDto);
+		}
+
 	}
 
 	@PutMapping("/update/{id}")
