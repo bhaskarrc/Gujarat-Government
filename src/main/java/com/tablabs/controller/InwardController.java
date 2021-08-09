@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tablabs.DTO.InwardEntryDTO;
 import com.tablabs.DTO.InwardListingDTO;
-import com.tablabs.model.InwardEntry;
+import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.service.InwardService;
 
 @RestController

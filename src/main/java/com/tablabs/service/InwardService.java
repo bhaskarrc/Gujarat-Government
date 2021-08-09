@@ -8,11 +8,13 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tablabs.DTO.InwardEntryDTO;
-import com.tablabs.model.InwardEntry;
+import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.repository.InwardRepository;
 
+@Service
 public class InwardService {
 
 	private InwardRepository inwardRepository;
@@ -26,21 +28,34 @@ public class InwardService {
 
 	public List<InwardEntryDTO> getByFieldName(Map<String, String> inwardEntry) {
 
-		String query = "SELECT i FROM InwardEntry i WHERE date_type= " + inwardEntry.get("dateType");
+		String query = "SELECT * FROM TDOI_INWARD_ENTRY";
 
-		for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
+		// if (!inwardEntry.get("dateType").isEmpty()) {
+//			String query = "SELECT * FROM TDOI_INWARD_ENTRY WHERE date_type= " + inwardEntry.get("dateType");
+		//
+//					if (inwardEntry.isEmpty()) {
+//						query = "SELECT * FROM TDOI_INWARD_ENTRY";
+//						System.out.println(inwardRepository.findByFieldName(query));
+//					} else {
+//						for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
+//							if (entry.getValue() != null) {
+//								query += (entry.getKey().equals("fromDate") || entry.getKey().equals("endDate"))
+//										? "AND " + entry.getValue() + " = "
+//												+ java.sql.Date.valueOf(LocalDate.parse(entry.getValue()))
+//										: "AND " + entry.getKey() + " = " + entry.getValue();
+//								System.out.println(inwardRepository.findByFieldName(query));
+		//
+//							}
+//						}
+//					}
 
-			if (entry.getValue() != null) {
-				query += (entry.getKey().equals("fromDate") || entry.getKey().equals("endDate"))
-						? "AND " + entry.getValue() + " = " + java.sql.Date.valueOf(LocalDate.parse(entry.getValue()))
-						: "AND " + entry.getKey() + " = " + entry.getValue();
-			} else {
-				query += "SELECT i FROM InwardEntry i";
-				break;
-			}
+//		}
+
+		List<Tdoi_inward_entry> fetchedInwardEntry = inwardRepository.findByFieldName(query);
+
+		if (fetchedInwardEntry == null) {
+			System.out.println("********************************************Null returned");
 		}
-
-		List<InwardEntry> fetchedInwardEntry = inwardRepository.findByFieldName(query);
 
 		List<InwardEntryDTO> inwardDtoList = fetchedInwardEntry.stream().map(d -> this.convertEntityToDto(d))
 				.collect(Collectors.toCollection(ArrayList::new));
@@ -54,21 +69,21 @@ public class InwardService {
 		});
 	}
 
-	public void updateInwardEntry(InwardEntry inwardEntry) {
-		inwardRepository.save(inwardEntry);
-	}
+//	public void updateInwardEntry(InwardEntry inwardEntry) {
+//		inwardRepository.save(inwardEntry);
+//	}
 
 	public void deleteInwardEntry(String id) {
 		inwardRepository.deleteById(Long.parseLong(id));
 	}
 
-	InwardEntryDTO convertEntityToDto(InwardEntry inwardEntry) {
+	InwardEntryDTO convertEntityToDto(Tdoi_inward_entry inwardEntry) {
 		InwardEntryDTO inwardEntryDTO = mapper.map(inwardEntry, InwardEntryDTO.class);
 		return inwardEntryDTO;
 	}
 
-	InwardEntry convertDtoToEntity(InwardEntryDTO inwardEntryDto) {
-		InwardEntry inwardEntry = mapper.map(inwardEntryDto, InwardEntry.class);
+	Tdoi_inward_entry convertDtoToEntity(InwardEntryDTO inwardEntryDto) {
+		Tdoi_inward_entry inwardEntry = mapper.map(inwardEntryDto, Tdoi_inward_entry.class);
 		return inwardEntry;
 	}
 }
