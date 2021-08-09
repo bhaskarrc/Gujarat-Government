@@ -1,27 +1,27 @@
-package com.tablabs.model;
+package com.tablabs.DTO;
 
 import java.util.Date;
 
-public class OutwardListing {
+public class OutwardListingDTO {
 
-	String outwardNumber;
-	Date outwardDate;
-	String letterType;
-	String letterNumber;
-	Date letterDate;
-	String outwardMode;
+	private String outwardNumber;
+	private Date outwardDate;
+	private String letterType;
+	private String letterNo;
+	private Date letterDate;
+	private String outwardMode;
 
-	public OutwardListing() {
+	public OutwardListingDTO() {
 		super();
 	}
 
-	public OutwardListing(String outwardNumber, Date outwardDate, String letterType, String letterNumber,
+	public OutwardListingDTO(String outwardNumber, Date outwardDate, String letterType, String letterNo,
 			Date letterDate, String outwardMode) {
 		super();
 		this.outwardNumber = outwardNumber;
 		this.outwardDate = outwardDate;
 		this.letterType = letterType;
-		this.letterNumber = letterNumber;
+		this.letterNo = letterNo;
 		this.letterDate = letterDate;
 		this.outwardMode = outwardMode;
 	}
@@ -50,12 +50,12 @@ public class OutwardListing {
 		this.letterType = letterType;
 	}
 
-	public String getLetterNumber() {
-		return letterNumber;
+	public String getLetterNo() {
+		return letterNo;
 	}
 
-	public void setLetterNumber(String letterNumber) {
-		this.letterNumber = letterNumber;
+	public void setLetterNo(String letterNo) {
+		this.letterNo = letterNo;
 	}
 
 	public Date getLetterDate() {

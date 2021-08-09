@@ -1,30 +1,30 @@
-package com.tablabs.model;
+package com.tablabs.DTO;
 
 import java.util.Date;
 
-public class InwardListing {
+public class InwardListingDTO {
 
-	String dateType;
-	Date fromDate;
-	Date endDate;
-	String letterType;
-	String branchName;
-	String from;
-	String status;
+	private String dateType;
+	private Date fromDate;
+	private Date endDate;
+	private String letterType;
+	private String branchName;
+	private String letterReceivedFrom;
+	private String status;
 
-	public InwardListing() {
+	public InwardListingDTO() {
 		super();
 	}
 
-	public InwardListing(String dateType, Date fromDate, Date endDate, String letterType, String branchName,
-			String from, String status) {
+	public InwardListingDTO(String dateType, Date fromDate, Date endDate, String letterType, String branchName,
+			String letterReceivedFrom, String status) {
 		super();
 		this.dateType = dateType;
 		this.fromDate = fromDate;
 		this.endDate = endDate;
 		this.letterType = letterType;
 		this.branchName = branchName;
-		this.from = from;
+		this.letterReceivedFrom = letterReceivedFrom;
 		this.status = status;
 	}
 
@@ -68,12 +68,12 @@ public class InwardListing {
 		this.branchName = branchName;
 	}
 
-	public String getFrom() {
-		return from;
+	public String getLetterReceivedFrom() {
+		return letterReceivedFrom;
 	}
 
-	public void setFrom(String from) {
-		this.from = from;
+	public void setLetterReceivedFrom(String letterReceivedFrom) {
+		this.letterReceivedFrom = letterReceivedFrom;
 	}
 
 	public String getStatus() {
