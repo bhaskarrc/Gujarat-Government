@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TDOI_OUTWARD_ENTRY", schema = "DOI")
-public class Tdoi_outward_entity {
+public class Tdoi_outward_entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,11 @@ public class Tdoi_outward_entity {
 	private long updated_by;
 	private long updated_by_post;
 
-	public Tdoi_outward_entity() {
+	public Tdoi_outward_entry() {
 		super();
 	}
 
-	public Tdoi_outward_entity(long outward_id, long outward_no, LocalDate outward_dt, long letter_type_id,
+	public Tdoi_outward_entry(long outward_id, long outward_no, LocalDate outward_dt, long letter_type_id,
 			String letter_type, String inward_letter_no, String letter_details, String sent_to_details,
 			long frm_branch_id, long outward_mode_id, double outward_amt, String remarks, String reference_no,
 			LocalDateTime reference_dt, short active_status, LocalDateTime created_date, long created_by,

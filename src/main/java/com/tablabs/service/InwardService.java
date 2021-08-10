@@ -30,26 +30,25 @@ public class InwardService {
 
 		String query = "SELECT * FROM TDOI_INWARD_ENTRY";
 
-		// if (!inwardEntry.get("dateType").isEmpty()) {
-//			String query = "SELECT * FROM TDOI_INWARD_ENTRY WHERE date_type= " + inwardEntry.get("dateType");
-		//
-//					if (inwardEntry.isEmpty()) {
-//						query = "SELECT * FROM TDOI_INWARD_ENTRY";
-//						System.out.println(inwardRepository.findByFieldName(query));
-//					} else {
-//						for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
-//							if (entry.getValue() != null) {
-//								query += (entry.getKey().equals("fromDate") || entry.getKey().equals("endDate"))
-//										? "AND " + entry.getValue() + " = "
-//												+ java.sql.Date.valueOf(LocalDate.parse(entry.getValue()))
-//										: "AND " + entry.getKey() + " = " + entry.getValue();
-//								System.out.println(inwardRepository.findByFieldName(query));
-		//
-//							}
-//						}
-//					}
+		if (!inwardEntry.get("dateType").isEmpty()) {
+			query = "SELECT * FROM TDOI_INWARD_ENTRY WHERE date_type= " + inwardEntry.get("dateType");
+			if (inwardEntry.isEmpty()) {
+				query = "SELECT * FROM TDOI_INWARD_ENTRY";
+				System.out.println(inwardRepository.findByFieldName(query));
+			} else {
+				for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
+					if (entry.getValue() != null) {
+						query += (entry.getKey().equals("fromDate") || entry.getKey().equals("endDate"))
+								? "AND " + entry.getValue() + " = "
+										+ java.sql.Date.valueOf(LocalDate.parse(entry.getValue()))
+								: "AND " + entry.getKey() + " = " + entry.getValue();
+						System.out.println(inwardRepository.findByFieldName(query));
 
-//		}
+					}
+				}
+			}
+
+		}
 
 		List<Tdoi_inward_entry> fetchedInwardEntry = inwardRepository.findByFieldName(query);
 
