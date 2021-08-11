@@ -19,6 +19,7 @@ public class Tdoi_inward_entry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
+	@Column(name = "INWARD_ID")
 	private long inward_id;
 
 	@NotNull

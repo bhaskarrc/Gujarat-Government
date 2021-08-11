@@ -38,7 +38,7 @@ public class InwardController {
 
 //	@PutMapping("/update/{id}")
 //	public void updateEntry(@RequestBody Map<String, String> inwardEntry, String id) {
-//		InwardEntry fetchInwardEntry = service.getInwardEntry(id);
+//			InwardEntry fetchInwardEntry = service.getInwardEntry(id);
 //
 //		if (id != null) {
 //			if (inwardEntry.get("inward_no") != null
