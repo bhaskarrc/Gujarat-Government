@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.repository.InwardRepository;
 
 @Service
+@Transactional
 public class InwardService {
 
 	private InwardRepository inwardRepository;
@@ -40,44 +43,52 @@ public class InwardService {
 
 	public List<InwardListingResponseDTO> getInwardEntryByFieldName(Map<String, String> inwardEntry) {
 
-		String query = "SELECT * FROM tdoi_inward_entry i WHERE ";
+		String query = "SELECT * FROM TDOI_INWARD_ENTRY i ";
 
 		if (!inwardEntry.containsKey("date_type") || inwardEntry.get("date_type").equals("Inward Date")) {
+			inwardEntry.remove("date_type");
 			if (inwardEntry.containsKey("from_dt") && inwardEntry.containsKey("end_dt")) {
-				query += "i.inward_dt BETWEEN '" + inwardEntry.get("from_dt") + "' AND '" + inwardEntry.get("end_dt")
-						+ "'";
+				query += "WHERE i.INWARD_DT BETWEEN '" + inwardEntry.get("from_dt") + "' AND '"
+						+ inwardEntry.get("end_dt") + "'";
 				inwardEntry.remove("from_dt");
 				inwardEntry.remove("end_dt");
 			} else if (inwardEntry.containsKey("from_dt")) {
-				query += "i.inward_dt = '" + inwardEntry.get("from_dt") + "'";
+				query += "WHERE i.INWARD_DT = '" + inwardEntry.get("from_dt") + "'";
 				inwardEntry.remove("from_dt");
 			} else if (inwardEntry.containsKey("end_dt")) {
-				query += "i.inward_dt = '" + inwardEntry.get("end_dt") + "'";
+				query += "WHERE i.INWARD_DT = '" + inwardEntry.get("end_dt") + "'";
 				inwardEntry.remove("end_dt");
 			}
 
 			for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
-				query += " AND " + entry.getKey() + " = '" + entry.getValue() + "'";
+				query += (query.contains("WHERE"))
+						? " AND i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'"
+						: "WHERE i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'";
 			}
 
 			query += ";";
 
 		} else {
+			inwardEntry.remove("date_type");
 			if (inwardEntry.containsKey("from_dt") && inwardEntry.containsKey("end_dt")) {
-				query += "i.letter_dt BETWEEN '" + inwardEntry.get("from_dt") + "' AND '" + inwardEntry.get("end_dt")
-						+ "'";
+				query += "WHERE i.LETTER_DT BETWEEN '" + inwardEntry.get("from_dt") + "' AND '"
+						+ inwardEntry.get("end_dt") + "'";
 				inwardEntry.remove("from_dt");
 				inwardEntry.remove("end_dt");
 			} else if (inwardEntry.containsKey("from_dt")) {
-				query += "i.letter_dt = '" + inwardEntry.get("from_dt") + "'";
+				inwardEntry.remove("date_type");
+				query += "WHERE i.LETTER_DT = '" + inwardEntry.get("from_dt") + "'";
 				inwardEntry.remove("from_dt");
 			} else if (inwardEntry.containsKey("end_dt")) {
-				query += "i.letter_dt = '" + inwardEntry.get("end_dt") + "'";
+				inwardEntry.remove("date_type");
+				query += "WHERE i.LETTER_DT = '" + inwardEntry.get("end_dt") + "'";
 				inwardEntry.remove("end_dt");
 			}
 
 			for (Map.Entry<String, String> entry : inwardEntry.entrySet()) {
-				query += " AND " + entry.getKey() + " = '" + entry.getValue() + "'";
+				query += (query.contains("WHERE"))
+						? " AND i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'"
+						: " WHERE i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'";
 			}
 
 			query += ";";
@@ -88,7 +99,7 @@ public class InwardService {
 		List<Tdoi_inward_entry> fetchedInwardEntry = inwardRepository.findByFieldName(query);
 
 		System.out.println(fetchedInwardEntry);
-		
+
 		List<InwardListingResponseDTO> inwardDtoList = fetchedInwardEntry.stream()
 				.map(d -> this.convertEntityToResponseDto(d)).collect(Collectors.toCollection(ArrayList::new));
 
@@ -97,6 +108,7 @@ public class InwardService {
 
 	public void addInwardEntry(List<InwardEntryDTO> inwardEntryDto) {
 		inwardEntryDto.forEach(d -> {
+			System.out.println(this.convertDtoToEntity(d));
 			inwardRepository.save(this.convertDtoToEntity(d));
 		});
 	}

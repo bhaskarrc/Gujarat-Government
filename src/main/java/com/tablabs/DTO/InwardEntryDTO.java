@@ -1,116 +1,118 @@
 package com.tablabs.DTO;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class InwardEntryDTO {
 
-	private String inwardNo;
+	private String inward_no;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private LocalDate inwardDate;
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDate inward_dt;
 
-	private String letterType;
-	private String letterNo;
+	private String letter_type;
+	private String letter_no;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private LocalDate letterDate;
-	private String letterDetail;
-	private String letterReceivedFrom;
-	private String branchName;
-	private String employeeName;
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDate letter_dt;
+
+	private String letter_details;
+	private String from_where_details;
+	private String branch_name;
+	private String doi_employee_name;
 
 	public InwardEntryDTO() {
 		super();
 	}
 
-	public InwardEntryDTO(String inwardNo, LocalDate inwardDate, String letterType, String letterNo,
-			LocalDate letterDate, String letterDetail, String letterReceivedFrom, String branchName,
-			String employeeName) {
+	public InwardEntryDTO(String inward_no, LocalDate inward_dt, String letter_type, String letter_no,
+			LocalDate letter_dt, String letter_details, String from_where_details, String branch_name,
+			String doi_employee_name) {
 		super();
-		this.inwardNo = inwardNo;
-		this.inwardDate = inwardDate;
-		this.letterType = letterType;
-		this.letterNo = letterNo;
-		this.letterDate = letterDate;
-		this.letterDetail = letterDetail;
-		this.letterReceivedFrom = letterReceivedFrom;
-		this.branchName = branchName;
-		this.employeeName = employeeName;
+		this.inward_no = inward_no;
+		this.inward_dt = inward_dt;
+		this.letter_type = letter_type;
+		this.letter_no = letter_no;
+		this.letter_dt = letter_dt;
+		this.letter_details = letter_details;
+		this.from_where_details = from_where_details;
+		this.branch_name = branch_name;
+		this.doi_employee_name = doi_employee_name;
 	}
 
-	public String getInwardNo() {
-		return inwardNo;
+	public String getInward_no() {
+		return inward_no;
 	}
 
-	public void setInwardNo(String inwardNo) {
-		this.inwardNo = inwardNo;
+	public void setInward_no(String inward_no) {
+		this.inward_no = inward_no;
 	}
 
-	public LocalDate getInwardDate() {
-		return inwardDate;
+	public LocalDate getInward_dt() {
+		return inward_dt;
 	}
 
-	public void setInwardDate(LocalDate inwardDate) {
-		this.inwardDate = inwardDate;
+	public void setInward_dt(LocalDate inward_dt) {
+		this.inward_dt = inward_dt;
 	}
 
-	public String getLetterType() {
-		return letterType;
+	public String getLetter_type() {
+		return letter_type;
 	}
 
-	public void setLetterType(String letterType) {
-		this.letterType = letterType;
+	public void setLetter_type(String letter_type) {
+		this.letter_type = letter_type;
 	}
 
-	public String getLetterNo() {
-		return letterNo;
+	public String getLetter_no() {
+		return letter_no;
 	}
 
-	public void setLetterNo(String letterNo) {
-		this.letterNo = letterNo;
+	public void setLetter_no(String letter_no) {
+		this.letter_no = letter_no;
 	}
 
-	public LocalDate getLetterDate() {
-		return letterDate;
+	public LocalDate getLetter_dt() {
+		return letter_dt;
 	}
 
-	public void setLetterDate(LocalDate letterDate) {
-		this.letterDate = letterDate;
+	public void setLetter_dt(LocalDate letter_dt) {
+		this.letter_dt = letter_dt;
 	}
 
-	public String getLetterDetail() {
-		return letterDetail;
+	public String getLetter_details() {
+		return letter_details;
 	}
 
-	public void setLetterDetail(String letterDetail) {
-		this.letterDetail = letterDetail;
+	public void setLetter_details(String letter_details) {
+		this.letter_details = letter_details;
 	}
 
-	public String getLetterReceivedFrom() {
-		return letterReceivedFrom;
+	public String getFrom_where_details() {
+		return from_where_details;
 	}
 
-	public void setLetterReceivedFrom(String letterReceivedFrom) {
-		this.letterReceivedFrom = letterReceivedFrom;
+	public void setFrom_where_details(String from_where_details) {
+		this.from_where_details = from_where_details;
 	}
 
-	public String getBranchName() {
-		return branchName;
+	public String getBranch_name() {
+		return branch_name;
 	}
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
+	public String getDoi_employee_name() {
+		return doi_employee_name;
 	}
 
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+	public void setDoi_employee_name(String doi_employee_name) {
+		this.doi_employee_name = doi_employee_name;
 	}
 
 }

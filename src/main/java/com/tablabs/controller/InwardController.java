@@ -23,8 +23,9 @@ public class InwardController {
 	InwardService service;
 
 	@PostMapping("/submit")
-	public String submitEntry(@RequestBody List<InwardEntryDTO> inwardDTO) {
-		this.service.addInwardEntry(inwardDTO);
+	public String submitEntry(@RequestBody List<InwardEntryDTO> inwardEntryDTO) {
+		System.out.println(inwardEntryDTO);
+		this.service.addInwardEntry(inwardEntryDTO);
 		return "Data entered succesfully!";
 	}
 

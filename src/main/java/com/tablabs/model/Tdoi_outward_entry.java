@@ -18,63 +18,78 @@ public class Tdoi_outward_entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "OUTWARD_ID")
 	private long outward_id;
 
 	@NotNull
+	@Column(name = "OUTWARD_NO")
 	private long outward_no;
 
 	@NotNull
+	@Column(name = "OUTWARD_DT")
 	private LocalDate outward_dt;
 
 	@NotNull
+	@Column(name = "LETTER_TYPE_ID")
 	private long letter_type_id;
 
-	@Column(length = 20)
+	@Column(name = "LETTER_TYPE", length = 20)
 	private String letter_type;
 
-	@Column(length = 20)
+	@Column(name = "INWARD_LETTER_NO", length = 20)
 	private String inward_letter_no;
 
-	@Column(length = 100)
+	@Column(name = "LETTER_DETAILS", length = 100)
 	private String letter_details;
 
-	@Column(length = 100)
+	@Column(name = "SENT_TO_DETAILS", length = 100)
 	private String sent_to_details;
 
+	@Column(name = "FRM_BRANCH_ID")
 	private long frm_branch_id;
 
 	@NotNull
+	@Column(name = "OUTWARD_MODE_ID")
 	private long outward_mode_id;
 
+	@Column(name = "OUTWARD_AMT")
 	private double outward_amt;
 
-	@Column(length = 200)
+	@Column(name = "REMARKS ", length = 200)
 	private String remarks;
 
-	@Column(length = 30)
+	@Column(name = "REFERENCE_NO", length = 30)
 	private String reference_no;
 
+	@Column(name = "REFERENCE_DT")
 	private LocalDateTime reference_dt;
 
 	@NotNull
+	@Column(name = "ACTIVE_STATUS")
 	private short active_status;
 
 	@NotNull
+	@Column(name = "CREATED_DATE")
 	private LocalDateTime created_date;
 
 	@NotNull
+	@Column(name = "CREATED_BY")
 	private long created_by;
 
+	@Column(name = "CREATED_BY_POST")
 	@NotNull
 	private long created_by_post;
 
 	@NotNull
+	@Column(name = "UPDATED_DATE")
 	private LocalDateTime updated_date;
 
 	@NotNull
+	@Column(name = "UPDATED_BY")
 	private long updated_by;
 
 	@NotNull
+	@Column(name = "UPDATED_BY_POST")
 	private long updated_by_post;
 
 	public Tdoi_outward_entry() {

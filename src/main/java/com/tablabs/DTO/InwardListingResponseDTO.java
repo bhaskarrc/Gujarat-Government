@@ -15,7 +15,7 @@ public class InwardListingResponseDTO {
 	private String doi_employee_name;
 	private LocalDateTime created_date;
 	private LocalDateTime updated_date;
-	private String active_status;
+	private short active_status;
 
 	public InwardListingResponseDTO() {
 		super();
@@ -23,7 +23,7 @@ public class InwardListingResponseDTO {
 
 	public InwardListingResponseDTO(long inward_no, LocalDate inward_dt, String letter_type, String letter_no,
 			LocalDate letter_dt, String from_where_details, String branch_name, String doi_employee_name,
-			LocalDateTime created_date, LocalDateTime updated_date, String active_status) {
+			LocalDateTime created_date, LocalDateTime updated_date, short active_status) {
 		super();
 		this.inward_no = inward_no;
 		this.inward_dt = inward_dt;
@@ -118,11 +118,11 @@ public class InwardListingResponseDTO {
 		this.updated_date = updated_date;
 	}
 
-	public String getActive_status() {
+	public short getActive_status() {
 		return active_status;
 	}
 
-	public void setActive_status(String active_status) {
+	public void setActive_status(short active_status) {
 		this.active_status = active_status;
 	}
 

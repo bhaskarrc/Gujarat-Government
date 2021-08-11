@@ -23,62 +23,75 @@ public class Tdoi_inward_entry {
 	private long inward_id;
 
 	@NotNull
-	private long inward_no;
+	@Column(name = "INWARD_NO")
+	private long inward_no = 0;
 
 	@NotNull
-	private LocalDate inward_dt;
+	@Column(name = "INWARD_DT")
+	private LocalDate inward_dt = LocalDate.now();
 
 	@NotNull
-	private long letter_type_id;
+	@Column(name = "LETTER_TYPE_ID")
+	private long letter_type_id = 0;
 
-	@Column(length = 20)
-	private String letter_type;
+	@Column(name = "LETTER_TYPE", length = 20)
+	private String letter_type = "xxxxx";
 
-	@Column(length = 20)
-	private String letter_no;
-
-	@NotNull
-	private LocalDate letter_dt;
-
-	@Column(length = 100)
-	private String letter_details;
-
-	@Column(length = 100)
-	private String from_where_details;
-
-	private long doi_branch_id;
-
-	private long doi_employee_id;
-
-	@Column(length = 100)
-
-	private String doi_employee_name;
-
-	@Column(length = 30)
-	private String reference_no;
-
-	private LocalDateTime reference_dt;
+	@Column(name = "LETTER_NO", length = 20)
+	private String letter_no = "xxxxx";
 
 	@NotNull
-	private short active_status;
+	@Column(name = "LETTER_DT")
+	private LocalDate letter_dt = LocalDate.now();
+
+	@Column(name = "LETTER_DETAILS", length = 100)
+	private String letter_details = "xxxxx";
+
+	@Column(name = "FROM_WHERE_DETAILS", length = 100)
+	private String from_where_details = "xxxxx";
+
+	@Column(name = "DOI_BRANCH_ID")
+	private long doi_branch_id = 0;
+
+	@Column(name = "DOI_EMPLOYEE_ID")
+	private long doi_employee_id = 0;
+
+	@Column(name = "DOI_EMPLOYEE_NAME", length = 100)
+	private String doi_employee_name = "xxxxx";
+
+	@Column(name = "REFERENCE_NO", length = 30)
+	private String reference_no = "xxxxx";
+
+	@Column(name = "REFERENCE_DT")
+	private LocalDateTime reference_dt = LocalDateTime.now();
 
 	@NotNull
-	private LocalDateTime created_date;
+	@Column(name = "ACTIVE_STATUS")
+	private short active_status = 0;
 
 	@NotNull
-	private long created_by;
+	@Column(name = "CREATED_DATE")
+	private LocalDateTime created_date = LocalDateTime.now();
 
 	@NotNull
-	private long created_by_post;
+	@Column(name = "CREATED_BY")
+	private long created_by = 0;
 
 	@NotNull
-	private LocalDateTime updated_date;
+	@Column(name = "CREATED_BY_POST")
+	private long created_by_post = 0;
 
 	@NotNull
-	private long updated_by;
+	@Column(name = "UPDATED_DATE")
+	private LocalDateTime updated_date = LocalDateTime.now();
 
 	@NotNull
-	private long updated_by_post;
+	@Column(name = "UPDATED_BY")
+	private long updated_by = 0;
+
+	@NotNull
+	@Column(name = "UPDATED_BY_POST")
+	private long updated_by_post = 0;
 
 	public Tdoi_inward_entry() {
 		super();
