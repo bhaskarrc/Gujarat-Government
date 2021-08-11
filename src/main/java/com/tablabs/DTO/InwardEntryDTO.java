@@ -1,14 +1,22 @@
 package com.tablabs.DTO;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class InwardEntryDTO {
 
 	private String inwardNo;
-	private Date inwardDate;
+
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDate inwardDate;
+
 	private String letterType;
 	private String letterNo;
-	private Date letterDate;
+
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDate letterDate;
 	private String letterDetail;
 	private String letterReceivedFrom;
 	private String branchName;
@@ -18,8 +26,9 @@ public class InwardEntryDTO {
 		super();
 	}
 
-	public InwardEntryDTO(String inwardNo, Date inwardDate, String letterType, String letterNo, Date letterDate,
-			String letterDetail, String letterReceivedFrom, String branchName, String employeeName) {
+	public InwardEntryDTO(String inwardNo, LocalDate inwardDate, String letterType, String letterNo,
+			LocalDate letterDate, String letterDetail, String letterReceivedFrom, String branchName,
+			String employeeName) {
 		super();
 		this.inwardNo = inwardNo;
 		this.inwardDate = inwardDate;
@@ -40,11 +49,11 @@ public class InwardEntryDTO {
 		this.inwardNo = inwardNo;
 	}
 
-	public Date getInwardDate() {
+	public LocalDate getInwardDate() {
 		return inwardDate;
 	}
 
-	public void setInwardDate(Date inwardDate) {
+	public void setInwardDate(LocalDate inwardDate) {
 		this.inwardDate = inwardDate;
 	}
 
@@ -64,11 +73,11 @@ public class InwardEntryDTO {
 		this.letterNo = letterNo;
 	}
 
-	public Date getLetterDate() {
+	public LocalDate getLetterDate() {
 		return letterDate;
 	}
 
-	public void setLetterDate(Date letterDate) {
+	public void setLetterDate(LocalDate letterDate) {
 		this.letterDate = letterDate;
 	}
 

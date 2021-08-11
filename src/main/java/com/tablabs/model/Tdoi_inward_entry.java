@@ -3,11 +3,14 @@ package com.tablabs.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "TDOI_INWARD_ENTRY", schema = "DOI")
@@ -15,26 +18,65 @@ public class Tdoi_inward_entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private long inward_id;
+
+	@NotNull
 	private long inward_no;
+
+	@NotNull
 	private LocalDate inward_dt;
+
+	@NotNull
 	private long letter_type_id;
+
+	@Column(length = 20)
 	private String letter_type;
+
+	@Column(length = 20)
 	private String letter_no;
+
+	@NotNull
 	private LocalDate letter_dt;
+
+	@Column(length = 100)
 	private String letter_details;
+
+	@Column(length = 100)
 	private String from_where_details;
+
 	private long doi_branch_id;
+
 	private long doi_employee_id;
+
+	@Column(length = 100)
+
 	private String doi_employee_name;
+
+	@Column(length = 30)
 	private String reference_no;
+
 	private LocalDateTime reference_dt;
+
+	@NotNull
 	private short active_status;
+
+	@NotNull
 	private LocalDateTime created_date;
+
+	@NotNull
 	private long created_by;
+
+	@NotNull
 	private long created_by_post;
+
+	@NotNull
 	private LocalDateTime updated_date;
+
+	@NotNull
 	private long updated_by;
+
+	@NotNull
 	private long updated_by_post;
 
 	public Tdoi_inward_entry() {

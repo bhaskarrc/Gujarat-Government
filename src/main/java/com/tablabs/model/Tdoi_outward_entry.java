@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name = "TDOI_OUTWARD_ENTRY", schema = "DOI")
 public class Tdoi_outward_entry {
@@ -17,25 +19,62 @@ public class Tdoi_outward_entry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long outward_id;
+
+	@NotNull
 	private long outward_no;
+
+	@NotNull
 	private LocalDate outward_dt;
+
+	@NotNull
 	private long letter_type_id;
+
+	@Column(length = 20)
 	private String letter_type;
+
+	@Column(length = 20)
 	private String inward_letter_no;
+
+	@Column(length = 100)
 	private String letter_details;
+
+	@Column(length = 100)
 	private String sent_to_details;
+
 	private long frm_branch_id;
+
+	@NotNull
 	private long outward_mode_id;
+
 	private double outward_amt;
+
+	@Column(length = 200)
 	private String remarks;
+
+	@Column(length = 30)
 	private String reference_no;
+
 	private LocalDateTime reference_dt;
+
+	@NotNull
 	private short active_status;
+
+	@NotNull
 	private LocalDateTime created_date;
+
+	@NotNull
 	private long created_by;
+
+	@NotNull
 	private long created_by_post;
+
+	@NotNull
 	private LocalDateTime updated_date;
+
+	@NotNull
 	private long updated_by;
+
+	@NotNull
 	private long updated_by_post;
 
 	public Tdoi_outward_entry() {

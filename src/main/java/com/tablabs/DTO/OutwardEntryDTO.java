@@ -1,11 +1,16 @@
 package com.tablabs.DTO;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class OutwardEntryDTO {
 
 	private String outwardNo;
-	private Date outwardDate;
+
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDate outwardDate;
+
 	private String letterType;
 	private String inwardLetterNo;
 	private String whomToSend;
@@ -18,7 +23,7 @@ public class OutwardEntryDTO {
 		super();
 	}
 
-	public OutwardEntryDTO(String outwardNo, Date outwardDate, String letterType, String inwardLetterNo,
+	public OutwardEntryDTO(String outwardNo, LocalDate outwardDate, String letterType, String inwardLetterNo,
 			String whomToSend, String fromBranchOrUnit, String outwardMode, double amount, String remark) {
 		super();
 		this.outwardNo = outwardNo;
@@ -40,11 +45,11 @@ public class OutwardEntryDTO {
 		this.outwardNo = outwardNo;
 	}
 
-	public Date getOutwardDate() {
+	public LocalDate getOutwardDate() {
 		return outwardDate;
 	}
 
-	public void setOutwardDate(Date outwardDate) {
+	public void setOutwardDate(LocalDate outwardDate) {
 		this.outwardDate = outwardDate;
 	}
 

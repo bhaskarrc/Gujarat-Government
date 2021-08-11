@@ -1,22 +1,28 @@
 package com.tablabs.DTO;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class OutwardListingDTO {
 
 	private String outwardNumber;
-	private Date outwardDate;
+
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDate outwardDate;
 	private String letterType;
 	private String letterNo;
-	private Date letterDate;
+
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDate letterDate;
 	private String outwardMode;
 
 	public OutwardListingDTO() {
 		super();
 	}
 
-	public OutwardListingDTO(String outwardNumber, Date outwardDate, String letterType, String letterNo,
-			Date letterDate, String outwardMode) {
+	public OutwardListingDTO(String outwardNumber, LocalDate outwardDate, String letterType, String letterNo,
+			LocalDate letterDate, String outwardMode) {
 		super();
 		this.outwardNumber = outwardNumber;
 		this.outwardDate = outwardDate;
@@ -34,11 +40,11 @@ public class OutwardListingDTO {
 		this.outwardNumber = outwardNumber;
 	}
 
-	public Date getOutwardDate() {
+	public LocalDate getOutwardDate() {
 		return outwardDate;
 	}
 
-	public void setOutwardDate(Date outwardDate) {
+	public void setOutwardDate(LocalDate outwardDate) {
 		this.outwardDate = outwardDate;
 	}
 
@@ -58,11 +64,11 @@ public class OutwardListingDTO {
 		this.letterNo = letterNo;
 	}
 
-	public Date getLetterDate() {
+	public LocalDate getLetterDate() {
 		return letterDate;
 	}
 
-	public void setLetterDate(Date letterDate) {
+	public void setLetterDate(LocalDate letterDate) {
 		this.letterDate = letterDate;
 	}
 

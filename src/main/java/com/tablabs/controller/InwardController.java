@@ -1,7 +1,5 @@
 package com.tablabs.controller;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -10,14 +8,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tablabs.DTO.InwardEntryDTO;
-import com.tablabs.DTO.InwardListingDTO;
-import com.tablabs.model.Tdoi_inward_entry;
+import com.tablabs.DTO.InwardListingResponseDTO;
 import com.tablabs.service.InwardService;
 
 @RestController
@@ -33,10 +29,13 @@ public class InwardController {
 	}
 
 	@GetMapping("/get")
-	public List<InwardEntryDTO> getUser(@RequestParam Map<String, String> inwardEntry) {
-		return this.service.getByFieldName(inwardEntry);
+	public List<InwardListingResponseDTO> getUser(@RequestParam Map<String, String> inwardEntry) {
+		if (inwardEntry.isEmpty()) {
+			return this.service.getAll();
+		}
+		return this.service.getInwardEntryByFieldName(inwardEntry);
 	}
-//
+
 //	@PutMapping("/update/{id}")
 //	public void updateEntry(@RequestBody Map<String, String> inwardEntry, String id) {
 //		InwardEntry fetchInwardEntry = service.getInwardEntry(id);
@@ -145,7 +144,6 @@ public class InwardController {
 //
 //		service.updateInwardEntry(fetchInwardEntry);
 //	}
-//
 
 	@DeleteMapping("/delete/{id}")
 	public String deleteEntry(@PathVariable String id) {
