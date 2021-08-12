@@ -2,8 +2,6 @@ package com.tablabs.DTO;
 
 import java.time.LocalDate;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class InwardEntryDTO {

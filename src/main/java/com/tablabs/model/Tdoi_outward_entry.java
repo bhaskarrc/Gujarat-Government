@@ -19,15 +19,15 @@ public class Tdoi_outward_entry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "OUTWARD_ID")
-	private long outward_id;
+	private long outward_id = 0;
 
 	@NotNull
 	@Column(name = "OUTWARD_NO")
-	private long outward_no;
+	private long outward_no = 0;
 
 	@NotNull
 	@Column(name = "OUTWARD_DT")
-	private LocalDate outward_dt;
+	private LocalDate outward_dt = LocalDate.now();
 
 	@NotNull
 	@Column(name = "LETTER_TYPE_ID")
@@ -46,51 +46,51 @@ public class Tdoi_outward_entry {
 	private String sent_to_details = "xxxx";
 
 	@Column(name = "FRM_BRANCH_ID")
-	private long frm_branch_id;
+	private long frm_branch_id = 0;
 
 	@NotNull
 	@Column(name = "OUTWARD_MODE_ID")
-	private long outward_mode_id;
+	private long outward_mode_id = 0;
 
 	@Column(name = "OUTWARD_AMT")
-	private double outward_amt;
+	private double outward_amt = 0.0;
 
 	@Column(name = "REMARKS ", length = 200)
-	private String remarks;
+	private String remarks = "xxxx";
 
 	@Column(name = "REFERENCE_NO", length = 30)
-	private String reference_no;
+	private String reference_no = "xxxx";
 
 	@Column(name = "REFERENCE_DT")
-	private LocalDateTime reference_dt;
+	private LocalDateTime reference_dt = LocalDateTime.now();
 
 	@NotNull
 	@Column(name = "ACTIVE_STATUS")
-	private short active_status;
+	private short active_status = 0;
 
 	@NotNull
 	@Column(name = "CREATED_DATE")
-	private LocalDateTime created_date;
+	private LocalDateTime created_date = LocalDateTime.now();
 
 	@NotNull
 	@Column(name = "CREATED_BY")
-	private long created_by;
+	private long created_by = 0;
 
 	@Column(name = "CREATED_BY_POST")
 	@NotNull
-	private long created_by_post;
+	private long created_by_post = 0;
 
 	@NotNull
 	@Column(name = "UPDATED_DATE")
-	private LocalDateTime updated_date;
+	private LocalDateTime updated_date = LocalDateTime.now();
 
 	@NotNull
 	@Column(name = "UPDATED_BY")
-	private long updated_by;
+	private long updated_by = 0;
 
 	@NotNull
 	@Column(name = "UPDATED_BY_POST")
-	private long updated_by_post;
+	private long updated_by_post = 0;
 
 	public Tdoi_outward_entry() {
 		super();

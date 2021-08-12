@@ -93,6 +93,18 @@ public class Tdoi_inward_entry {
 	@Column(name = "UPDATED_BY_POST")
 	private long updated_by_post = 0;
 
+	@Override
+	public String toString() {
+		return "Tdoi_inward_entry [inward_id=" + inward_id + ", inward_no=" + inward_no + ", inward_dt=" + inward_dt
+				+ ", letter_type_id=" + letter_type_id + ", letter_type=" + letter_type + ", letter_no=" + letter_no
+				+ ", letter_dt=" + letter_dt + ", letter_details=" + letter_details + ", from_where_details="
+				+ from_where_details + ", doi_branch_id=" + doi_branch_id + ", doi_employee_id=" + doi_employee_id
+				+ ", doi_employee_name=" + doi_employee_name + ", reference_no=" + reference_no + ", reference_dt="
+				+ reference_dt + ", active_status=" + active_status + ", created_date=" + created_date + ", created_by="
+				+ created_by + ", created_by_post=" + created_by_post + ", updated_date=" + updated_date
+				+ ", updated_by=" + updated_by + ", updated_by_post=" + updated_by_post + "]";
+	}
+
 	public Tdoi_inward_entry() {
 		super();
 	}

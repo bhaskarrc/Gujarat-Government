@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.tablabs.DTO.InwardEntryDTO;
 import com.tablabs.DTO.InwardListingResponseDTO;
@@ -18,6 +19,7 @@ import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.repository.InwardRepository;
 
 @Service
+@CrossOrigin(origins = "*")
 @Transactional
 public class InwardService {
 
@@ -117,12 +119,20 @@ public class InwardService {
 		});
 	}
 
-//	public void updateInwardEntry(InwardEntry inwardEntry) {
-//		inwardRepository.save(inwardEntry);
-//	}
+	public void updateInwardEntry(InwardEntryDTO inwardEntryDto, long id) {
+		Tdoi_inward_entry inwardEntry = this.getInwardEntryById(id);
+		inwardEntry = this.convertDtoToEntityForUpdate(inwardEntryDto, inwardEntry);
+		System.out.println(inwardEntry);
+		inwardRepository.save(inwardEntry); ////
+	}
 
 	public void deleteInwardEntry(long id) {
 		inwardRepository.deleteById(id);
+	}
+
+	Tdoi_inward_entry convertDtoToEntityForUpdate(InwardEntryDTO inwardEntryDto, Tdoi_inward_entry todiInwardEntry) {
+		Tdoi_inward_entry inwardEntry = mapper.map(inwardEntryDto, todiInwardEntry.getClass());
+		return inwardEntry;
 	}
 
 	InwardEntryDTO convertEntityToDto(Tdoi_inward_entry inwardEntry) {

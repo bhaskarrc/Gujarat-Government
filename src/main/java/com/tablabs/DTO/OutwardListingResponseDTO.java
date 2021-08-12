@@ -2,48 +2,46 @@ package com.tablabs.DTO;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-public class OutwardEntryDTO {
-
-	private String outward_No;
-
-	@JsonFormat(pattern = "dd-MM-yyyy")
+public class OutwardListingResponseDTO {
+	private long outward_no;
 	private LocalDate outward_dt;
-
 	private String letter_type;
+	private String letter_no; // np
+	private LocalDate letter_dt; // np
 	private String inward_letter_no;
 	private String sent_to_details;
-	private String from_branch_or_unit; // np
+	private String from_branch; // np
 	private String outward_mode; // np
 	private double outward_amt;
 	private String remarks;
 
-	public OutwardEntryDTO() {
+	public OutwardListingResponseDTO() {
 		super();
 	}
 
-	public OutwardEntryDTO(String outward_No, LocalDate outward_dt, String letter_type, String inward_letter_no,
-			String sent_to_details, String from_branch_or_unit, String outward_mode, double outward_amt,
-			String remarks) {
+	public OutwardListingResponseDTO(long outward_no, LocalDate outward_dt, String letter_type, String letter_no,
+			LocalDate letter_dt, String inward_letter_no, String sent_to_details, String from_branch,
+			String outward_mode, double outward_amt, String remarks) {
 		super();
-		this.outward_No = outward_No;
+		this.outward_no = outward_no;
 		this.outward_dt = outward_dt;
 		this.letter_type = letter_type;
+		this.letter_no = letter_no;
+		this.letter_dt = letter_dt;
 		this.inward_letter_no = inward_letter_no;
 		this.sent_to_details = sent_to_details;
-		this.from_branch_or_unit = from_branch_or_unit;
+		this.from_branch = from_branch;
 		this.outward_mode = outward_mode;
 		this.outward_amt = outward_amt;
 		this.remarks = remarks;
 	}
 
-	public String getOutward_No() {
-		return outward_No;
+	public long getOutward_no() {
+		return outward_no;
 	}
 
-	public void setOutward_No(String outward_No) {
-		this.outward_No = outward_No;
+	public void setOutward_no(long outward_no) {
+		this.outward_no = outward_no;
 	}
 
 	public LocalDate getOutward_dt() {
@@ -62,6 +60,22 @@ public class OutwardEntryDTO {
 		this.letter_type = letter_type;
 	}
 
+	public String getLetter_no() {
+		return letter_no;
+	}
+
+	public void setLetter_no(String letter_no) {
+		this.letter_no = letter_no;
+	}
+
+	public LocalDate getLetter_dt() {
+		return letter_dt;
+	}
+
+	public void setLetter_dt(LocalDate letter_dt) {
+		this.letter_dt = letter_dt;
+	}
+
 	public String getInward_letter_no() {
 		return inward_letter_no;
 	}
@@ -78,12 +92,12 @@ public class OutwardEntryDTO {
 		this.sent_to_details = sent_to_details;
 	}
 
-	public String getFrom_branch_or_unit() {
-		return from_branch_or_unit;
+	public String getFrom_branch() {
+		return from_branch;
 	}
 
-	public void setFrom_branch_or_unit(String from_branch_or_unit) {
-		this.from_branch_or_unit = from_branch_or_unit;
+	public void setFrom_branch(String from_branch) {
+		this.from_branch = from_branch;
 	}
 
 	public String getOutward_mode() {
