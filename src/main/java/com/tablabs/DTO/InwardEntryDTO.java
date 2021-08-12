@@ -43,6 +43,14 @@ public class InwardEntryDTO {
 		this.doi_employee_name = doi_employee_name;
 	}
 
+	@Override
+	public String toString() {
+		return "InwardEntryDTO [inward_no=" + inward_no + ", inward_dt=" + inward_dt + ", letter_type=" + letter_type
+				+ ", letter_no=" + letter_no + ", letter_dt=" + letter_dt + ", letter_details=" + letter_details
+				+ ", from_where_details=" + from_where_details + ", branch_name=" + branch_name + ", doi_employee_name="
+				+ doi_employee_name + "]";
+	}
+
 	public String getInward_no() {
 		return inward_no;
 	}

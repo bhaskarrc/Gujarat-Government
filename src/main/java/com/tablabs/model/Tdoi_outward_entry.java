@@ -31,19 +31,19 @@ public class Tdoi_outward_entry {
 
 	@NotNull
 	@Column(name = "LETTER_TYPE_ID")
-	private long letter_type_id;
+	private long letter_type_id = 0;
 
 	@Column(name = "LETTER_TYPE", length = 20)
-	private String letter_type;
+	private String letter_type = "xxxx";
 
 	@Column(name = "INWARD_LETTER_NO", length = 20)
-	private String inward_letter_no;
+	private String inward_letter_no = "xxxx";
 
 	@Column(name = "LETTER_DETAILS", length = 100)
-	private String letter_details;
+	private String letter_details = "xxxx";
 
 	@Column(name = "SENT_TO_DETAILS", length = 100)
-	private String sent_to_details;
+	private String sent_to_details = "xxxx";
 
 	@Column(name = "FRM_BRANCH_ID")
 	private long frm_branch_id;
