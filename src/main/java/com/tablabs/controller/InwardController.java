@@ -147,7 +147,7 @@ public class InwardController {
 //	}
 
 	@DeleteMapping("/delete/{id}")
-	public String deleteEntry(@PathVariable String id) {
+	public String deleteEntry(@PathVariable long id) {
 		service.deleteInwardEntry(id);
 		return "Data deleted successfully";
 	}

@@ -3,6 +3,7 @@ package com.tablabs.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -45,7 +46,12 @@ public class InwardService {
 
 		String query = "SELECT * FROM TDOI_INWARD_ENTRY i ";
 
-		if (!inwardEntry.containsKey("date_type") || inwardEntry.get("date_type").equals("Inward Date")) {
+		String date_type = Optional.ofNullable(inwardEntry.get("date_type")).orElse("empty");
+
+		switch (date_type) {
+		case "empty":
+			;
+		case "Inward Date":
 			inwardEntry.remove("date_type");
 			if (inwardEntry.containsKey("from_dt") && inwardEntry.containsKey("end_dt")) {
 				query += "WHERE i.INWARD_DT BETWEEN '" + inwardEntry.get("from_dt") + "' AND '"
@@ -67,8 +73,9 @@ public class InwardService {
 			}
 
 			query += ";";
+			break;
 
-		} else {
+		case "Letter Date":
 			inwardEntry.remove("date_type");
 			if (inwardEntry.containsKey("from_dt") && inwardEntry.containsKey("end_dt")) {
 				query += "WHERE i.LETTER_DT BETWEEN '" + inwardEntry.get("from_dt") + "' AND '"
@@ -92,14 +99,11 @@ public class InwardService {
 			}
 
 			query += ";";
+			break;
 		}
 
 		System.out.println(query);
-
 		List<Tdoi_inward_entry> fetchedInwardEntry = inwardRepository.findByFieldName(query);
-
-		System.out.println(fetchedInwardEntry);
-
 		List<InwardListingResponseDTO> inwardDtoList = fetchedInwardEntry.stream()
 				.map(d -> this.convertEntityToResponseDto(d)).collect(Collectors.toCollection(ArrayList::new));
 
@@ -117,8 +121,8 @@ public class InwardService {
 //		inwardRepository.save(inwardEntry);
 //	}
 
-	public void deleteInwardEntry(String id) {
-		inwardRepository.deleteById(Long.parseLong(id));
+	public void deleteInwardEntry(long id) {
+		inwardRepository.deleteById(id);
 	}
 
 	InwardEntryDTO convertEntityToDto(Tdoi_inward_entry inwardEntry) {
