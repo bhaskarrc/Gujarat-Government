@@ -6,10 +6,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -43,6 +48,19 @@ public class InwardService {
 		});
 		return inwardListingResponseDTO;
 	}
+
+//	public List<Tdoi_inward_entry> findTest() {
+//		return inwardRepository.findAll(new Specification<Tdoi_inward_entry>() {
+//			@Override
+//			public Predicate toPredicate(Root<Tdoi_inward_entry> root, CriteriaQuery<?> query,
+//					CriteriaBuilder criteriaBuilder) {
+//				List<Predicate> predicates = new ArrayList<>();
+//				
+//				
+//				return null;
+//			}
+//		});
+//	}
 
 	public List<InwardListingResponseDTO> getInwardEntryByFieldName(Map<String, String> inwardEntry) {
 
