@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.tablabs.DTO.InwardEntryDTO;
 import com.tablabs.DTO.InwardListingResponseDTO;
+import com.tablabs.DTO.InwardUpdateEntryDTO;
 import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.repository.InwardRepository;
 
@@ -77,7 +78,6 @@ public class InwardService {
 						: "WHERE i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'";
 			}
 
-			// query += ";";
 			break;
 
 		case "Letter Date":
@@ -102,8 +102,6 @@ public class InwardService {
 						? " AND i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'"
 						: " WHERE i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'";
 			}
-
-			// query += ";";
 			break;
 		}
 
@@ -136,9 +134,11 @@ public class InwardService {
 		});
 	}
 
-	public void updateInwardEntry(InwardEntryDTO inwardEntryDto, long id) {
+	public void updateInwardEntry(InwardUpdateEntryDTO inwardUpdateEntryDTO, long id) {
+		System.out.println(inwardUpdateEntryDTO);
 		Tdoi_inward_entry inwardEntry = this.getInwardEntryById(id);
-		inwardEntry = this.convertDtoToEntityForUpdate(inwardEntryDto, inwardEntry);
+		System.out.println(inwardEntry);
+		inwardEntry = this.convertDtoToEntityForUpdate(inwardUpdateEntryDTO, inwardEntry);
 		System.out.println(inwardEntry);
 		inwardRepository.save(inwardEntry); ////
 	}
@@ -147,8 +147,9 @@ public class InwardService {
 		inwardRepository.deleteById(id);
 	}
 
-	Tdoi_inward_entry convertDtoToEntityForUpdate(InwardEntryDTO inwardEntryDto, Tdoi_inward_entry todiInwardEntry) {
-		Tdoi_inward_entry inwardEntry = mapper.map(inwardEntryDto, todiInwardEntry.getClass());
+	Tdoi_inward_entry convertDtoToEntityForUpdate(InwardUpdateEntryDTO inwardUpdateEntryDTO,
+			Tdoi_inward_entry todiInwardEntry) {
+		Tdoi_inward_entry inwardEntry = mapper.map(inwardUpdateEntryDTO, todiInwardEntry.getClass());
 		return inwardEntry;
 	}
 

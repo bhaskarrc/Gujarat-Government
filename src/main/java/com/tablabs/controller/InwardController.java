@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tablabs.DTO.InwardEntryDTO;
 import com.tablabs.DTO.InwardListingResponseDTO;
+import com.tablabs.DTO.InwardUpdateEntryDTO;
 import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.service.InwardService;
 
@@ -49,8 +50,8 @@ public class InwardController {
 	}
 
 	@PutMapping("/update/{id}")
-	public String updateEntry(@RequestBody InwardEntryDTO inwardEntryDTO, @PathVariable long id) {
-		this.service.updateInwardEntry(inwardEntryDTO, id);
+	public String updateEntry(@RequestBody InwardUpdateEntryDTO inwardUpdateEntryDTO, @PathVariable long id) {
+		this.service.updateInwardEntry(inwardUpdateEntryDTO, id);
 		return "Data updated succesfully!";
 	}
 

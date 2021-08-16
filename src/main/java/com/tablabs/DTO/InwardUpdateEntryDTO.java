@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class InwardEntryDTO {
+public class InwardUpdateEntryDTO {
+
+	private String inward_id;
 
 	private String inward_no;
 
@@ -22,22 +24,23 @@ public class InwardEntryDTO {
 	private String branch_name;
 	private String doi_employee_name;
 
-	public InwardEntryDTO() {
-		super();
-	}
-
 	@Override
 	public String toString() {
-		return "InwardEntryDTO [inward_no=" + inward_no + ", inward_dt=" + inward_dt + ", letter_type=" + letter_type
-				+ ", letter_no=" + letter_no + ", letter_dt=" + letter_dt + ", letter_details=" + letter_details
-				+ ", from_where_details=" + from_where_details + ", branch_name=" + branch_name + ", doi_employee_name="
-				+ doi_employee_name + "]";
+		return "InwardUpdateEntryDTO [inward_id=" + inward_id + ", inward_no=" + inward_no + ", inward_dt=" + inward_dt
+				+ ", letter_type=" + letter_type + ", letter_no=" + letter_no + ", letter_dt=" + letter_dt
+				+ ", letter_details=" + letter_details + ", from_where_details=" + from_where_details + ", branch_name="
+				+ branch_name + ", doi_employee_name=" + doi_employee_name + "]";
 	}
 
-	public InwardEntryDTO(String inward_no, LocalDate inward_dt, String letter_type, String letter_no,
-			LocalDate letter_dt, String letter_details, String from_where_details, String branch_name,
+	public InwardUpdateEntryDTO() {
+		super();
+	}
+
+	public InwardUpdateEntryDTO(String inward_id, String inward_no, LocalDate inward_dt, String letter_type,
+			String letter_no, LocalDate letter_dt, String letter_details, String from_where_details, String branch_name,
 			String doi_employee_name) {
 		super();
+		this.inward_id = inward_id;
 		this.inward_no = inward_no;
 		this.inward_dt = inward_dt;
 		this.letter_type = letter_type;
@@ -47,6 +50,14 @@ public class InwardEntryDTO {
 		this.from_where_details = from_where_details;
 		this.branch_name = branch_name;
 		this.doi_employee_name = doi_employee_name;
+	}
+
+	public String getInward_id() {
+		return inward_id;
+	}
+
+	public void setInward_id(String inward_id) {
+		this.inward_id = inward_id;
 	}
 
 	public String getInward_no() {
