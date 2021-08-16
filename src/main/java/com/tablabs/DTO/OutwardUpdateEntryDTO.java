@@ -4,9 +4,10 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class OutwardEntryDTO {
+public class OutwardUpdateEntryDTO {
 
-	private String outward_no;
+	private String outward_id;
+	private String outward_No;
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate outward_dt;
@@ -14,28 +15,22 @@ public class OutwardEntryDTO {
 	private String letter_type;
 	private String inward_letter_no;
 	private String sent_to_details;
-	private String from_branch_or_unit; // np
-	private String outward_mode; // np
+	private String from_branch_or_unit;
+	private String outward_mode;
 	private double outward_amt;
 	private String remarks;
 
-	@Override
-	public String toString() {
-		return "OutwardEntryDTO [outward_No=" + outward_no + ", outward_dt=" + outward_dt + ", letter_type="
-				+ letter_type + ", inward_letter_no=" + inward_letter_no + ", sent_to_details=" + sent_to_details
-				+ ", from_branch_or_unit=" + from_branch_or_unit + ", outward_mode=" + outward_mode + ", outward_amt="
-				+ outward_amt + ", remarks=" + remarks + "]";
+	public OutwardUpdateEntryDTO() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public OutwardEntryDTO() {
+	public OutwardUpdateEntryDTO(String outward_id, String outward_No, LocalDate outward_dt, String letter_type,
+			String inward_letter_no, String sent_to_details, String from_branch_or_unit, String outward_mode,
+			double outward_amt, String remarks) {
 		super();
-	}
-
-	public OutwardEntryDTO(String outward_no, LocalDate outward_dt, String letter_type, String inward_letter_no,
-			String sent_to_details, String from_branch_or_unit, String outward_mode, double outward_amt,
-			String remarks) {
-		super();
-		this.outward_no = outward_no;
+		this.outward_id = outward_id;
+		this.outward_No = outward_No;
 		this.outward_dt = outward_dt;
 		this.letter_type = letter_type;
 		this.inward_letter_no = inward_letter_no;
@@ -46,12 +41,20 @@ public class OutwardEntryDTO {
 		this.remarks = remarks;
 	}
 
-	public String getOutward_no() {
-		return outward_no;
+	public String getOutward_id() {
+		return outward_id;
 	}
 
-	public void setOutward_no(String outward_no) {
-		this.outward_no = outward_no;
+	public void setOutward_id(String outward_id) {
+		this.outward_id = outward_id;
+	}
+
+	public String getOutward_No() {
+		return outward_No;
+	}
+
+	public void setOutward_No(String outward_No) {
+		this.outward_No = outward_No;
 	}
 
 	public LocalDate getOutward_dt() {

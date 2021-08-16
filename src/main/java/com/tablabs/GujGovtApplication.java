@@ -1,6 +1,5 @@
 package com.tablabs;
 
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +13,6 @@ public class GujGovtApplication {
 	public ModelMapper modelMapper() {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setFieldMatchingEnabled(true).setFieldAccessLevel(AccessLevel.PRIVATE);
-		mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
 		mapper.getConfiguration().setSkipNullEnabled(true);
 		return mapper;
 	}
