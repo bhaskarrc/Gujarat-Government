@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +20,9 @@ import com.tablabs.DTO.InwardListingResponseDTO;
 import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.service.InwardService;
 
-@RestController()
-@RequestMapping("DTO/inward")
+@RestController
+@RequestMapping("DOI/inward")
+@CrossOrigin()
 public class InwardController {
 
 	@Autowired

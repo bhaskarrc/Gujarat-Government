@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tablabs.DTO.OutwardEntryDTO;
 import com.tablabs.DTO.OutwardListingResponseDTO;
+import com.tablabs.model.Tdoi_inward_entry;
+import com.tablabs.model.Tdoi_outward_entry;
 import com.tablabs.service.OutwardService;
 
 @RestController()
@@ -38,6 +40,11 @@ public class OutwardController {
 			return this.service.getAll();
 		}
 		return this.service.getoutwardEntryByFieldName(outwardEntry);
+	}
+	
+	@GetMapping("/get/{id}")
+	public Tdoi_outward_entry getUser(@PathVariable long id) {
+		return this.service.getOutwardEntryById(id);
 	}
 
 	@PutMapping("/update/{id}")

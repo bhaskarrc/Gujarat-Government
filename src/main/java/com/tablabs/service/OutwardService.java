@@ -44,7 +44,7 @@ public class OutwardService {
 
 	public List<OutwardListingResponseDTO> getoutwardEntryByFieldName(Map<String, String> outwardEntry) {
 
-		String query = "SELECT FROM TDOI_OUTWARD_ENTRY o ";
+		String query = "SELECT FROM DOI.TDOI_OUTWARD_ENTRY o ";
 
 		for (Map.Entry<String, String> entry : outwardEntry.entrySet()) {
 			query += (query.contains("WHERE"))

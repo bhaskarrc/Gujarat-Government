@@ -6,15 +6,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -30,11 +26,13 @@ public class InwardService {
 
 	private InwardRepository inwardRepository;
 	private ModelMapper mapper;
+	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public InwardService(InwardRepository inwardRepository, ModelMapper mapper) {
+	public InwardService(InwardRepository inwardRepository, ModelMapper mapper, JdbcTemplate jdbcTemplate) {
 		this.inwardRepository = inwardRepository;
 		this.mapper = mapper;
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	public Tdoi_inward_entry getInwardEntryById(long id) {
@@ -49,22 +47,9 @@ public class InwardService {
 		return inwardListingResponseDTO;
 	}
 
-//	public List<Tdoi_inward_entry> findTest() {
-//		return inwardRepository.findAll(new Specification<Tdoi_inward_entry>() {
-//			@Override
-//			public Predicate toPredicate(Root<Tdoi_inward_entry> root, CriteriaQuery<?> query,
-//					CriteriaBuilder criteriaBuilder) {
-//				List<Predicate> predicates = new ArrayList<>();
-//				
-//				
-//				return null;
-//			}
-//		});
-//	}
-
 	public List<InwardListingResponseDTO> getInwardEntryByFieldName(Map<String, String> inwardEntry) {
 
-		String query = "SELECT * FROM TDOI_INWARD_ENTRY i ";
+		String query = "SELECT * FROM DOI.TDOI_INWARD_ENTRY i ";
 
 		String date_type = Optional.ofNullable(inwardEntry.get("date_type")).orElse("empty");
 
@@ -92,7 +77,7 @@ public class InwardService {
 						: "WHERE i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'";
 			}
 
-			query += ";";
+			// query += ";";
 			break;
 
 		case "Letter Date":
@@ -118,12 +103,26 @@ public class InwardService {
 						: " WHERE i." + entry.getKey().toUpperCase() + " = '" + entry.getValue() + "'";
 			}
 
-			query += ";";
+			// query += ";";
 			break;
 		}
 
 		System.out.println(query);
-		List<Tdoi_inward_entry> fetchedInwardEntry = inwardRepository.findByFieldName(query);
+
+		List<Tdoi_inward_entry> fetchedInwardEntry = new ArrayList<>();
+		fetchedInwardEntry = jdbcTemplate.query(query,
+				(rs, rowNum) -> new Tdoi_inward_entry(rs.getLong("INWARD_ID"), rs.getLong("INWARD_NO"),
+						rs.getDate("INWARD_DT").toLocalDate(), rs.getLong("LETTER_TYPE_ID"),
+						rs.getString("LETTER_TYPE"), rs.getString("LETTER_NO"), rs.getDate("LETTER_DT").toLocalDate(),
+						rs.getString("LETTER_DETAILS"), rs.getString("FROM_WHERE_DETAILS"), rs.getLong("DOI_BRANCH_ID"),
+						rs.getLong("DOI_EMPLOYEE_ID"), rs.getString("DOI_EMPLOYEE_NAME"), rs.getString("REFERENCE_NO"),
+						rs.getTimestamp("REFERENCE_DT").toLocalDateTime(), rs.getShort("ACTIVE_STATUS"),
+						rs.getTimestamp("CREATED_DATE").toLocalDateTime(), rs.getLong("CREATED_BY"),
+						rs.getLong("CREATED_BY_POST"), rs.getTimestamp("UPDATED_DATE").toLocalDateTime(),
+						rs.getLong("UPDATED_BY"), rs.getLong("UPDATED_BY_POST")));
+
+		System.out.println(fetchedInwardEntry);
+
 		List<InwardListingResponseDTO> inwardDtoList = fetchedInwardEntry.stream()
 				.map(d -> this.convertEntityToResponseDto(d)).collect(Collectors.toCollection(ArrayList::new));
 

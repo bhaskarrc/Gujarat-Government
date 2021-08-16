@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -28,6 +29,7 @@ public class Tdoi_inward_entry {
 
 	@NotNull
 	@Column(name = "INWARD_DT")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate inward_dt = LocalDate.now();
 
 	@NotNull
@@ -42,6 +44,7 @@ public class Tdoi_inward_entry {
 
 	@NotNull
 	@Column(name = "LETTER_DT")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate letter_dt = LocalDate.now();
 
 	@Column(name = "LETTER_DETAILS", length = 100)
@@ -63,6 +66,7 @@ public class Tdoi_inward_entry {
 	private String reference_no = "xxxxx";
 
 	@Column(name = "REFERENCE_DT")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime reference_dt = LocalDateTime.now();
 
 	@NotNull
@@ -71,6 +75,7 @@ public class Tdoi_inward_entry {
 
 	@NotNull
 	@Column(name = "CREATED_DATE")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime created_date = LocalDateTime.now();
 
 	@NotNull
