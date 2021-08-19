@@ -1,9 +1,12 @@
 package com.tablabs.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.tablabs.DTO.InwardEntryDTO;
 import com.tablabs.DTO.InwardListingResponseDTO;
 import com.tablabs.DTO.InwardUpdateEntryDTO;
+import com.tablabs.model.JsonObjectFormat;
 import com.tablabs.model.Tdoi_inward_entry;
 import com.tablabs.service.InwardService;
 
@@ -30,29 +38,122 @@ public class InwardController {
 	InwardService service;
 
 	@PostMapping("/save")
-	public String submitEntry(@RequestBody List<InwardEntryDTO> inwardEntryDTO) {
-		System.out.println(inwardEntryDTO);
-		this.service.addInwardEntry(inwardEntryDTO);
-		return "Data entered succesfully!";
+	public ResponseEntity<String> submitEntry(@RequestBody List<InwardEntryDTO> inwardEntryDTO)
+			throws JsonProcessingException {
+
+		JsonObjectFormat jsonobjectFormat;
+
+		try {
+			if (inwardEntryDTO != null && !inwardEntryDTO.isEmpty()) {
+				List<Tdoi_inward_entry> inwardEntry = this.service.addInwardEntry(inwardEntryDTO);
+				jsonobjectFormat = new JsonObjectFormat("Data Save successfully", true, inwardEntry);
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				ObjectMapper obj = new ObjectMapper();
+
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.ok().body(customStr);
+
+			} else {
+				jsonobjectFormat = new JsonObjectFormat("No data entered", false, "");
+				ObjectMapper obj = new ObjectMapper();
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.badRequest().body(customStr);
+			}
+		} catch (Exception e) {
+			jsonobjectFormat = new JsonObjectFormat("Unable to save data", false, "");
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.internalServerError().body(customStr);
+		}
 	}
 
 	@GetMapping("/get")
-	public List<InwardListingResponseDTO> getUser(@RequestParam Map<String, String> inwardEntry) {
-		if (inwardEntry.isEmpty()) {
-			return this.service.getAll();
+	public ResponseEntity<String> getUser(@RequestParam Map<String, String> inwardEntry)
+			throws JsonProcessingException {
+
+		JsonObjectFormat jsonobjectFormat;
+
+		try {
+			if (inwardEntry.isEmpty()) {
+				List<InwardListingResponseDTO> inwardListingResponseList = this.service.getAll();
+				jsonobjectFormat = new JsonObjectFormat("Fetched every data", true, inwardListingResponseList);
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				ObjectMapper obj = new ObjectMapper();
+
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.ok().body(customStr);
+			} else {
+				List<InwardListingResponseDTO> inwardListingResponseList = this.service
+						.getInwardEntryByFieldName(inwardEntry);
+				jsonobjectFormat = new JsonObjectFormat("Data fetched successfully!", true, inwardListingResponseList);
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				ObjectMapper obj = new ObjectMapper();
+
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.ok().body(customStr);
+			}
+		} catch (Exception e) {
+			jsonobjectFormat = new JsonObjectFormat("Unable to fetch data", false, "");
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.internalServerError().body(customStr);
 		}
-		return this.service.getInwardEntryByFieldName(inwardEntry);
 	}
 
 	@GetMapping("/get/{id}")
 	public Tdoi_inward_entry getUser(@PathVariable long id) {
+
 		return this.service.getInwardEntryById(id);
 	}
 
 	@PutMapping("/update/{id}")
-	public String updateEntry(@RequestBody InwardUpdateEntryDTO inwardUpdateEntryDTO, @PathVariable long id) {
-		this.service.updateInwardEntry(inwardUpdateEntryDTO, id);
-		return "Data updated succesfully!";
+	public ResponseEntity<String> updateEntry(@RequestBody InwardUpdateEntryDTO inwardUpdateEntryDTO,
+			@PathVariable Long id) throws JsonProcessingException {
+
+		JsonObjectFormat jsonobjectFormat;
+
+		try {
+			if (id != null) {
+				Tdoi_inward_entry updateResponse = this.service.updateInwardEntry(inwardUpdateEntryDTO, id);
+				jsonobjectFormat = new JsonObjectFormat("Data successfully updated for id: " + id, true,
+						updateResponse);
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
+				ObjectMapper obj = new ObjectMapper();
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.ok().body(customStr);
+			} else {
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				ObjectMapper obj = new ObjectMapper();
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString("No id entered");
+				return ResponseEntity.badRequest().body(customStr);
+			}
+		} catch (Exception e) {
+			jsonobjectFormat = new JsonObjectFormat("Unable to fetch data", false, "");
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.internalServerError().body(customStr);
+		}
 	}
 
 	@DeleteMapping("/delete/{id}")

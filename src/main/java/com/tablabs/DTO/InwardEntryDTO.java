@@ -8,13 +8,13 @@ public class InwardEntryDTO {
 
 	private String inward_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate inward_dt;
 
 	private String letter_type;
 	private String letter_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate letter_dt;
 
 	private String letter_details;
@@ -25,7 +25,7 @@ public class InwardEntryDTO {
 	public InwardEntryDTO() {
 		super();
 	}
-
+	
 	@Override
 	public String toString() {
 		return "InwardEntryDTO [inward_no=" + inward_no + ", inward_dt=" + inward_dt + ", letter_type=" + letter_type

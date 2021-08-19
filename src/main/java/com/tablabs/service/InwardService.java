@@ -127,20 +127,24 @@ public class InwardService {
 		return inwardDtoList;
 	}
 
-	public void addInwardEntry(List<InwardEntryDTO> inwardEntryDto) {
+	public List<Tdoi_inward_entry> addInwardEntry(List<InwardEntryDTO> inwardEntryDto) {
+		List<Tdoi_inward_entry> inward = new ArrayList<>();
 		inwardEntryDto.forEach(d -> {
 			System.out.println(this.convertDtoToEntity(d));
-			inwardRepository.save(this.convertDtoToEntity(d));
+			Tdoi_inward_entry entity = inwardRepository.save(this.convertDtoToEntity(d));
+			inward.add(entity);
 		});
+		return inward;
 	}
 
-	public void updateInwardEntry(InwardUpdateEntryDTO inwardUpdateEntryDTO, long id) {
+	public Tdoi_inward_entry updateInwardEntry(InwardUpdateEntryDTO inwardUpdateEntryDTO, long id) {
 		System.out.println(inwardUpdateEntryDTO);
 		Tdoi_inward_entry inwardEntry = this.getInwardEntryById(id);
 		System.out.println(inwardEntry);
 		inwardEntry = this.convertDtoToEntityForUpdate(inwardUpdateEntryDTO, inwardEntry);
 		System.out.println(inwardEntry);
-		inwardRepository.save(inwardEntry); ////
+		Tdoi_inward_entry entity = inwardRepository.save(inwardEntry);
+		return entity;
 	}
 
 	public void deleteInwardEntry(long id) {

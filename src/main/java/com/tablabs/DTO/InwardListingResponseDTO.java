@@ -3,18 +3,31 @@ package com.tablabs.DTO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class InwardListingResponseDTO {
 
 	private long inward_no;
+
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate inward_dt;
+
 	private String letter_type;
 	private String letter_no;
+
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate letter_dt;
+
 	private String from_where_details;
 	private String branch_name;
 	private String doi_employee_name;
+
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime created_date;
+
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime updated_date;
+
 	private short active_status;
 
 	public InwardListingResponseDTO() {
