@@ -49,11 +49,9 @@ public class InwardController {
 				jsonobjectFormat = new JsonObjectFormat("Data Save successfully", true, inwardEntry);
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				ObjectMapper obj = new ObjectMapper();
-
 				obj.registerModule(new JavaTimeModule());
 				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 				obj.setDateFormat(df);
-
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
 
@@ -83,11 +81,9 @@ public class InwardController {
 				jsonobjectFormat = new JsonObjectFormat("Fetched every data", true, inwardListingResponseList);
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				ObjectMapper obj = new ObjectMapper();
-
 				obj.registerModule(new JavaTimeModule());
 				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 				obj.setDateFormat(df);
-
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
 			} else {
@@ -96,11 +92,9 @@ public class InwardController {
 				jsonobjectFormat = new JsonObjectFormat("Data fetched successfully!", true, inwardListingResponseList);
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				ObjectMapper obj = new ObjectMapper();
-
 				obj.registerModule(new JavaTimeModule());
 				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 				obj.setDateFormat(df);
-
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
 			}
@@ -113,9 +107,37 @@ public class InwardController {
 	}
 
 	@GetMapping("/get/{id}")
-	public Tdoi_inward_entry getUser(@PathVariable long id) {
+	public ResponseEntity<String> getUser(@PathVariable Long id) throws JsonProcessingException {
 
-		return this.service.getInwardEntryById(id);
+		JsonObjectFormat jsonobjectFormat;
+
+		try {
+			if (id != null) {
+
+				Tdoi_inward_entry updateResponse = this.service.getInwardEntryById(id);
+				jsonobjectFormat = new JsonObjectFormat("Data fecthed for the id: " + id, true, updateResponse);
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				ObjectMapper obj = new ObjectMapper();
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.ok().body(customStr);
+			} else {
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				ObjectMapper obj = new ObjectMapper();
+				obj.registerModule(new JavaTimeModule());
+				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+				obj.setDateFormat(df);
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString("No id entered");
+				return ResponseEntity.badRequest().body(customStr);
+			}
+		} catch (Exception e) {
+			jsonobjectFormat = new JsonObjectFormat("Unable to fetch data", false, "");
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.internalServerError().body(customStr);
+		}
 	}
 
 	@PutMapping("/update/{id}")
@@ -130,12 +152,10 @@ public class InwardController {
 				jsonobjectFormat = new JsonObjectFormat("Data successfully updated for id: " + id, true,
 						updateResponse);
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-
 				ObjectMapper obj = new ObjectMapper();
 				obj.registerModule(new JavaTimeModule());
 				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 				obj.setDateFormat(df);
-
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
 			} else {
@@ -144,7 +164,6 @@ public class InwardController {
 				obj.registerModule(new JavaTimeModule());
 				obj.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 				obj.setDateFormat(df);
-
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString("No id entered");
 				return ResponseEntity.badRequest().body(customStr);
 			}
@@ -157,8 +176,27 @@ public class InwardController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public String deleteEntry(@PathVariable long id) {
-		service.deleteInwardEntry(id);
-		return "Data deleted successfully";
+	public ResponseEntity<String> deleteEntry(@PathVariable Long id) throws JsonProcessingException {
+
+		JsonObjectFormat jsonobjectFormat;
+
+		try {
+			if (id != null) {
+				this.service.deleteInwardEntry(id);
+				jsonobjectFormat = new JsonObjectFormat("Data deleted for the id: " + id, true, "");
+				ObjectMapper obj = new ObjectMapper();
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+				return ResponseEntity.ok().body(customStr);
+			} else {
+				ObjectMapper obj = new ObjectMapper();
+				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString("No id entered");
+				return ResponseEntity.badRequest().body(customStr);
+			}
+		} catch (Exception e) {
+			jsonobjectFormat = new JsonObjectFormat("Unable to delete data", false, "");
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.internalServerError().body(customStr);
+		}
 	}
 }
