@@ -1,16 +1,26 @@
-package com.tablabs.DTO;
+package com.gov.guj.DTO;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class OutwardListingResponseDTO {
+
+	private String outward_id;
 	private long outward_no;
+
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate outward_dt;
+
 	private String letter_type;
 	private String letter_no; // np
+
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate letter_dt; // np
+	
 	private String inward_letter_no;
 	private String sent_to_details;
-	private String from_branch; // np
+	private String frm_branch_id; // np
 	private String outward_mode; // np
 	private double outward_amt;
 	private String remarks;
@@ -19,10 +29,11 @@ public class OutwardListingResponseDTO {
 		super();
 	}
 
-	public OutwardListingResponseDTO(long outward_no, LocalDate outward_dt, String letter_type, String letter_no,
-			LocalDate letter_dt, String inward_letter_no, String sent_to_details, String from_branch,
-			String outward_mode, double outward_amt, String remarks) {
+	public OutwardListingResponseDTO(String outward_id, long outward_no, LocalDate outward_dt, String letter_type,
+			String letter_no, LocalDate letter_dt, String inward_letter_no, String sent_to_details,
+			String frm_branch_id, String outward_mode, double outward_amt, String remarks) {
 		super();
+		this.outward_id = outward_id;
 		this.outward_no = outward_no;
 		this.outward_dt = outward_dt;
 		this.letter_type = letter_type;
@@ -30,10 +41,18 @@ public class OutwardListingResponseDTO {
 		this.letter_dt = letter_dt;
 		this.inward_letter_no = inward_letter_no;
 		this.sent_to_details = sent_to_details;
-		this.from_branch = from_branch;
+		this.frm_branch_id = frm_branch_id;
 		this.outward_mode = outward_mode;
 		this.outward_amt = outward_amt;
 		this.remarks = remarks;
+	}
+
+	public String getOutward_id() {
+		return outward_id;
+	}
+
+	public void setOutward_id(String outward_id) {
+		this.outward_id = outward_id;
 	}
 
 	public long getOutward_no() {
@@ -92,12 +111,12 @@ public class OutwardListingResponseDTO {
 		this.sent_to_details = sent_to_details;
 	}
 
-	public String getFrom_branch() {
-		return from_branch;
+	public String getFrm_branch_id() {
+		return frm_branch_id;
 	}
 
-	public void setFrom_branch(String from_branch) {
-		this.from_branch = from_branch;
+	public void setFrm_branch_id(String frm_branch_id) {
+		this.frm_branch_id = frm_branch_id;
 	}
 
 	public String getOutward_mode() {
@@ -125,3 +144,5 @@ public class OutwardListingResponseDTO {
 	}
 
 }
+
+//http://localhost:4200/#/doi/outward/outward-entry

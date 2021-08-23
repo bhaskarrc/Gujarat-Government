@@ -1,4 +1,4 @@
-package com.tablabs.util;
+package com.gov.guj.util;
 
 import org.springframework.stereotype.Service;
 

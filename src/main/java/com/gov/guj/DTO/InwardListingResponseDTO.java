@@ -1,4 +1,4 @@
-package com.tablabs.DTO;
+package com.gov.guj.DTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,25 +7,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class InwardListingResponseDTO {
 
+	private long inward_id;
 	private long inward_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate inward_dt;
 
 	private String letter_type;
 	private String letter_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate letter_dt;
 
 	private String from_where_details;
-	private String branch_name;
+	private String doi_branch_id;
 	private String doi_employee_name;
 
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	@JsonFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	private LocalDateTime created_date;
 
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	@JsonFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	private LocalDateTime updated_date;
 
 	private short active_status;
@@ -34,21 +35,30 @@ public class InwardListingResponseDTO {
 		super();
 	}
 
-	public InwardListingResponseDTO(long inward_no, LocalDate inward_dt, String letter_type, String letter_no,
-			LocalDate letter_dt, String from_where_details, String branch_name, String doi_employee_name,
-			LocalDateTime created_date, LocalDateTime updated_date, short active_status) {
+	public InwardListingResponseDTO(long inward_id, long inward_no, LocalDate inward_dt, String letter_type,
+			String letter_no, LocalDate letter_dt, String from_where_details, String doi_branch_id,
+			String doi_employee_name, LocalDateTime created_date, LocalDateTime updated_date, short active_status) {
 		super();
+		this.inward_id = inward_id;
 		this.inward_no = inward_no;
 		this.inward_dt = inward_dt;
 		this.letter_type = letter_type;
 		this.letter_no = letter_no;
 		this.letter_dt = letter_dt;
 		this.from_where_details = from_where_details;
-		this.branch_name = branch_name;
+		this.doi_branch_id = doi_branch_id;
 		this.doi_employee_name = doi_employee_name;
 		this.created_date = created_date;
 		this.updated_date = updated_date;
 		this.active_status = active_status;
+	}
+
+	public long getInward_id() {
+		return inward_id;
+	}
+
+	public void setInward_id(long inward_id) {
+		this.inward_id = inward_id;
 	}
 
 	public long getInward_no() {
@@ -99,12 +109,12 @@ public class InwardListingResponseDTO {
 		this.from_where_details = from_where_details;
 	}
 
-	public String getBranch_name() {
-		return branch_name;
+	public String getDoi_branch_id() {
+		return doi_branch_id;
 	}
 
-	public void setBranch_name(String branch_name) {
-		this.branch_name = branch_name;
+	public void setDoi_branch_id(String doi_branch_id) {
+		this.doi_branch_id = doi_branch_id;
 	}
 
 	public String getDoi_employee_name() {

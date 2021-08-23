@@ -1,4 +1,4 @@
-package com.tablabs.model;
+package com.gov.guj.model;
 
 import java.util.List;
 

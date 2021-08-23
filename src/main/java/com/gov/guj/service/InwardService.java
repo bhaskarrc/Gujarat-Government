@@ -1,4 +1,4 @@
-package com.tablabs.service;
+package com.gov.guj.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.tablabs.DTO.InwardEntryDTO;
-import com.tablabs.DTO.InwardListingResponseDTO;
-import com.tablabs.DTO.InwardUpdateEntryDTO;
-import com.tablabs.model.Tdoi_inward_entry;
-import com.tablabs.repository.InwardRepository;
+import com.gov.guj.DTO.InwardEntryDTO;
+import com.gov.guj.DTO.InwardListingResponseDTO;
+import com.gov.guj.DTO.InwardUpdateEntryDTO;
+import com.gov.guj.model.Tdoi_inward_entry;
+import com.gov.guj.repository.InwardRepository;
 
 @Service
 @CrossOrigin(origins = "*")

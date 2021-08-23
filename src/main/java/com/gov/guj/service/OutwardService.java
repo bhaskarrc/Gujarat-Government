@@ -1,4 +1,5 @@
-package com.tablabs.service;
+package com.gov.guj.service;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.tablabs.DTO.OutwardEntryDTO;
-import com.tablabs.DTO.OutwardListingResponseDTO;
-import com.tablabs.DTO.OutwardUpdateEntryDTO;
-import com.tablabs.model.Tdoi_outward_entry;
-import com.tablabs.repository.OutwardRepository;
+import com.gov.guj.DTO.OutwardEntryDTO;
+import com.gov.guj.DTO.OutwardListingResponseDTO;
+import com.gov.guj.DTO.OutwardUpdateEntryDTO;
+import com.gov.guj.model.Tdoi_outward_entry;
+import com.gov.guj.repository.OutwardRepository;
 
 @Service
+@CrossOrigin(origins = "*")
 @Transactional
 public class OutwardService {
 
@@ -39,6 +42,7 @@ public class OutwardService {
 
 	public List<OutwardListingResponseDTO> getAll() {
 		List<OutwardListingResponseDTO> outwardListingResponseDTO = new ArrayList<>();
+		System.out.println(outwardRepository.findAll());
 		outwardRepository.findAll().forEach(r -> {
 			outwardListingResponseDTO.add(this.convertEntityToResponseDto(r));
 		});
@@ -77,24 +81,31 @@ public class OutwardService {
 		return outwardDtoList;
 	}
 
-	public void addOutwardEntry(List<OutwardEntryDTO> outwardEntryDto) {
+	public List<Tdoi_outward_entry> addOutwardEntry(List<OutwardEntryDTO> outwardEntryDto) {
+		List<Tdoi_outward_entry> outwardEntryDTOList = new ArrayList<Tdoi_outward_entry>();
+
 		outwardEntryDto.forEach(d -> {
 			System.out.println(this.convertDtoToEntity(d));
-			outwardRepository.save(this.convertDtoToEntity(d));
+			Tdoi_outward_entry outwardEntryDTO = outwardRepository.save(this.convertDtoToEntity(d));
+			outwardEntryDTOList.add(outwardEntryDTO);
 		});
+		return outwardEntryDTOList;
 	}
 
-	public void updateOutwardEntry(OutwardUpdateEntryDTO outwardUpdateEntryDTO, long id) {
+	public Tdoi_outward_entry updateOutwardEntry(OutwardUpdateEntryDTO outwardUpdateEntryDTO, long id) {
 		System.out.println(outwardUpdateEntryDTO);
 		Tdoi_outward_entry outwardEntry = this.getOutwardEntryById(id);
 		System.out.println(outwardEntry);
 		outwardEntry = this.convertDtoToEntityForUpdate(outwardUpdateEntryDTO, outwardEntry);
 		System.out.println(outwardEntry);
-		outwardRepository.save(outwardEntry);
+		Tdoi_outward_entry tdoi_outward_entry = outwardRepository.save(outwardEntry);
+		return tdoi_outward_entry;
 	}
 
-	public void deleteOutwardEntry(long id) {
+	public Tdoi_outward_entry deleteOutwardEntry(long id) {
+		Tdoi_outward_entry tdoi_outward_entry = outwardRepository.findById(id).get();
 		outwardRepository.deleteById(id);
+		return tdoi_outward_entry;
 	}
 
 	Tdoi_outward_entry convertDtoToEntityForUpdate(OutwardEntryDTO outwardEntryDto,

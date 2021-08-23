@@ -1,4 +1,4 @@
-package com.tablabs.DTO;
+package com.gov.guj.DTO;
 
 import java.time.LocalDate;
 
@@ -6,44 +6,46 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class OutwardEntryDTO {
 
+	private String outward_id;
 	private String outward_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate outward_dt;
 
 	private String letter_type;
 	private String inward_letter_no;
 	private String sent_to_details;
-	private String from_branch_or_unit; // np
-	private String outward_mode; // np
+	private String frm_branch_id; // np
+	private String outward_mode_id; // np
 	private double outward_amt;
 	private String remarks;
-
-	@Override
-	public String toString() {
-		return "OutwardEntryDTO [outward_No=" + outward_no + ", outward_dt=" + outward_dt + ", letter_type="
-				+ letter_type + ", inward_letter_no=" + inward_letter_no + ", sent_to_details=" + sent_to_details
-				+ ", from_branch_or_unit=" + from_branch_or_unit + ", outward_mode=" + outward_mode + ", outward_amt="
-				+ outward_amt + ", remarks=" + remarks + "]";
-	}
 
 	public OutwardEntryDTO() {
 		super();
 	}
-
-	public OutwardEntryDTO(String outward_no, LocalDate outward_dt, String letter_type, String inward_letter_no,
-			String sent_to_details, String from_branch_or_unit, String outward_mode, double outward_amt,
-			String remarks) {
+	
+	public OutwardEntryDTO(String outward_id, String outward_no, LocalDate outward_dt, String letter_type,
+			String inward_letter_no, String sent_to_details, String frm_branch_id, String outward_mode_id,
+			double outward_amt, String remarks) {
 		super();
+		this.outward_id = outward_id;
 		this.outward_no = outward_no;
 		this.outward_dt = outward_dt;
 		this.letter_type = letter_type;
 		this.inward_letter_no = inward_letter_no;
 		this.sent_to_details = sent_to_details;
-		this.from_branch_or_unit = from_branch_or_unit;
-		this.outward_mode = outward_mode;
+		this.frm_branch_id = frm_branch_id;
+		this.outward_mode_id = outward_mode_id;
 		this.outward_amt = outward_amt;
 		this.remarks = remarks;
+	}
+
+	public String getOutward_id() {
+		return outward_id;
+	}
+
+	public void setOutward_id(String outward_id) {
+		this.outward_id = outward_id;
 	}
 
 	public String getOutward_no() {
@@ -86,20 +88,20 @@ public class OutwardEntryDTO {
 		this.sent_to_details = sent_to_details;
 	}
 
-	public String getFrom_branch_or_unit() {
-		return from_branch_or_unit;
+	public String getFrm_branch_id() {
+		return frm_branch_id;
 	}
 
-	public void setFrom_branch_or_unit(String from_branch_or_unit) {
-		this.from_branch_or_unit = from_branch_or_unit;
+	public void setFrm_branch_id(String frm_branch_id) {
+		this.frm_branch_id = frm_branch_id;
 	}
 
-	public String getOutward_mode() {
-		return outward_mode;
+	public String getOutward_mode_id() {
+		return outward_mode_id;
 	}
 
-	public void setOutward_mode(String outward_mode) {
-		this.outward_mode = outward_mode;
+	public void setOutward_mode_id(String outward_mode_id) {
+		this.outward_mode_id = outward_mode_id;
 	}
 
 	public double getOutward_amt() {

@@ -1,4 +1,4 @@
-package com.tablabs.repository;
+package com.gov.guj.repository;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.tablabs.model.Tdoi_inward_entry;
+import com.gov.guj.model.Tdoi_inward_entry;
 
 @Repository
 public interface InwardRepository

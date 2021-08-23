@@ -1,4 +1,4 @@
-package com.tablabs.controller;
+package com.gov.guj.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,19 +15,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.tablabs.DTO.InwardEntryDTO;
-import com.tablabs.DTO.InwardListingResponseDTO;
-import com.tablabs.DTO.InwardUpdateEntryDTO;
-import com.tablabs.model.JsonObjectFormat;
-import com.tablabs.model.Tdoi_inward_entry;
-import com.tablabs.service.InwardService;
+import com.gov.guj.DTO.InwardEntryDTO;
+import com.gov.guj.DTO.InwardListingResponseDTO;
+import com.gov.guj.DTO.InwardUpdateEntryDTO;
+import com.gov.guj.model.JsonObjectFormat;
+import com.gov.guj.model.Tdoi_inward_entry;
+import com.gov.guj.service.InwardService;
 
 @RestController
 @RequestMapping("DOI/inward")
@@ -69,9 +68,9 @@ public class InwardController {
 		}
 	}
 
-	@GetMapping("/get")
-	public ResponseEntity<String> getUser(@RequestParam Map<String, String> inwardEntry)
-			throws JsonProcessingException {
+	@PostMapping("/get")
+	public ResponseEntity<String> getUser(@RequestBody Map<String, String> inwardEntry) throws JsonProcessingException {
+		System.out.println(inwardEntry);
 
 		JsonObjectFormat jsonobjectFormat;
 
@@ -86,6 +85,7 @@ public class InwardController {
 				obj.setDateFormat(df);
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
+
 			} else {
 				List<InwardListingResponseDTO> inwardListingResponseList = this.service
 						.getInwardEntryByFieldName(inwardEntry);
@@ -123,6 +123,7 @@ public class InwardController {
 				obj.setDateFormat(df);
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
+
 			} else {
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				ObjectMapper obj = new ObjectMapper();
@@ -158,6 +159,7 @@ public class InwardController {
 				obj.setDateFormat(df);
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
+
 			} else {
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				ObjectMapper obj = new ObjectMapper();
@@ -187,6 +189,7 @@ public class InwardController {
 				ObjectMapper obj = new ObjectMapper();
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
+
 			} else {
 				ObjectMapper obj = new ObjectMapper();
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString("No id entered");

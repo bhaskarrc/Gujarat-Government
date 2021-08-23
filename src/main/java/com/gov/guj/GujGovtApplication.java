@@ -1,4 +1,4 @@
-package com.tablabs;
+package com.gov.guj;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;

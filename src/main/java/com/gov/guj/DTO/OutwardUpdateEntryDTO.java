@@ -1,4 +1,4 @@
-package com.tablabs.DTO;
+package com.gov.guj.DTO;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ public class OutwardUpdateEntryDTO {
 	private String outward_id;
 	private String outward_No;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate outward_dt;
 
 	private String letter_type;

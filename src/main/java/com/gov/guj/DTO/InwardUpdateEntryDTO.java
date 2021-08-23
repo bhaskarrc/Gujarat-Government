@@ -1,4 +1,4 @@
-package com.tablabs.DTO;
+package com.gov.guj.DTO;
 
 import java.time.LocalDate;
 
@@ -7,16 +7,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class InwardUpdateEntryDTO {
 
 	private String inward_id;
-
 	private String inward_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate inward_dt;
 
 	private String letter_type;
 	private String letter_no;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private LocalDate letter_dt;
 
 	private String letter_details;
