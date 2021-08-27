@@ -26,7 +26,7 @@ public class InwardEntryDTO {
 	public InwardEntryDTO() {
 		super();
 	}
-
+	
 	@Override
 	public String toString() {
 		return "InwardEntryDTO [inward_no=" + inward_no + ", inward_dt=" + inward_dt + ", letter_type=" + letter_type

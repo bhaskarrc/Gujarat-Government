@@ -48,6 +48,10 @@ public class InwardService {
 		return inwardListingResponseDTO;
 	}
 
+	public Long getMaxInwardNumber() {
+		return inwardRepository.getMaxInwardNumber();
+	}
+
 	public List<InwardListingResponseDTO> getInwardEntryByFieldName(Map<String, String> inwardEntry) {
 
 		String query = "SELECT * FROM DOI.TDOI_INWARD_ENTRY i ";

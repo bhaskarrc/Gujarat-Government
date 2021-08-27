@@ -122,11 +122,11 @@ public class OutwardListingResponseDTO {
 	public String getOutward_mode() {
 		return outward_mode;
 	}
-
+	
 	public void setOutward_mode(String outward_mode) {
 		this.outward_mode = outward_mode;
 	}
-
+	
 	public double getOutward_amt() {
 		return outward_amt;
 	}
@@ -144,5 +144,4 @@ public class OutwardListingResponseDTO {
 	}
 
 }
-
 //http://localhost:4200/#/doi/outward/outward-entry
