@@ -21,11 +21,11 @@ public class Tdoi_inward_entry {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	@Column(name = "INWARD_ID")
-	private long inward_id;
+	private Long inward_id;
 
 	@NotNull
 	@Column(name = "INWARD_NO")
-	private long inward_no = 0;
+	private String inward_no = "xxxxx";
 
 	@NotNull
 	@Column(name = "INWARD_DT")
@@ -114,7 +114,7 @@ public class Tdoi_inward_entry {
 		super();
 	}
 
-	public Tdoi_inward_entry(long inward_id, long inward_no, LocalDate inward_dt, long letter_type_id,
+	public Tdoi_inward_entry(Long inward_id, String inward_no, LocalDate inward_dt, long letter_type_id,
 			String letter_type, String letter_no, LocalDate letter_dt, String letter_details, String from_where_details,
 			long doi_branch_id, long doi_employee_id, String doi_employee_name, String reference_no,
 			LocalDateTime reference_dt, short active_status, LocalDateTime created_date, long created_by,
@@ -143,19 +143,19 @@ public class Tdoi_inward_entry {
 		this.updated_by_post = updated_by_post;
 	}
 
-	public long getInward_id() {
+	public Long getInward_id() {
 		return inward_id;
 	}
 
-	public void setInward_id(long inward_id) {
+	public void setInward_id(Long inward_id) {
 		this.inward_id = inward_id;
 	}
 
-	public long getInward_no() {
+	public String getInward_no() {
 		return inward_no;
 	}
 
-	public void setInward_no(long inward_no) {
+	public void setInward_no(String inward_no) {
 		this.inward_no = inward_no;
 	}
 

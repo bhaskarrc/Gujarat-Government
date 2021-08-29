@@ -1,6 +1,7 @@
 package com.gov.guj.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.gov.guj.DTO.InwardEntryDTO;
 import com.gov.guj.DTO.InwardListingResponseDTO;
 import com.gov.guj.DTO.InwardUpdateEntryDTO;
+import com.gov.guj.model.Ms_bank;
+import com.gov.guj.model.Ms_bank_branch;
 import com.gov.guj.model.Tdoi_inward_entry;
+import com.gov.guj.repository.BankRepository;
 import com.gov.guj.repository.InwardRepository;
 
 @Service
@@ -26,12 +30,15 @@ import com.gov.guj.repository.InwardRepository;
 public class InwardService {
 
 	private InwardRepository inwardRepository;
+	private BankRepository bankRepository;
 	private ModelMapper mapper;
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public InwardService(InwardRepository inwardRepository, ModelMapper mapper, JdbcTemplate jdbcTemplate) {
+	public InwardService(InwardRepository inwardRepository, BankRepository bankRepository, ModelMapper mapper,
+			JdbcTemplate jdbcTemplate) {
 		this.inwardRepository = inwardRepository;
+		this.bankRepository = bankRepository;
 		this.mapper = mapper;
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -48,8 +55,23 @@ public class InwardService {
 		return inwardListingResponseDTO;
 	}
 
-	public Long getMaxInwardNumber() {
-		return inwardRepository.getMaxInwardNumber();
+	public List<String> getLatestInwardNumber() {
+		return inwardRepository.getLatestInwardNumber();
+	}
+
+	public Map<String, List<String>> getBankBranchNamesByBank() {
+		Map<String, List<String>> bankBranchList = new HashMap<>();
+		Iterable<Ms_bank> ms_bank = this.bankRepository.findAll();
+
+		ms_bank.forEach(bank -> {
+			List<String> bankBranchName = new ArrayList<>();
+			bank.getBank_branches().forEach(bankBranch -> {
+				bankBranchName.add(bankBranch.getBranch_name());
+			});
+			bankBranchList.put(bank.getBank_name(), bankBranchName);
+		});
+
+		return bankBranchList;
 	}
 
 	public List<InwardListingResponseDTO> getInwardEntryByFieldName(Map<String, String> inwardEntry) {
@@ -113,7 +135,7 @@ public class InwardService {
 
 		List<Tdoi_inward_entry> fetchedInwardEntry = new ArrayList<>();
 		fetchedInwardEntry = jdbcTemplate.query(query,
-				(rs, rowNum) -> new Tdoi_inward_entry(rs.getLong("INWARD_ID"), rs.getLong("INWARD_NO"),
+				(rs, rowNum) -> new Tdoi_inward_entry(rs.getLong("INWARD_ID"), rs.getString("INWARD_NO"),
 						rs.getDate("INWARD_DT").toLocalDate(), rs.getLong("LETTER_TYPE_ID"),
 						rs.getString("LETTER_TYPE"), rs.getString("LETTER_NO"), rs.getDate("LETTER_DT").toLocalDate(),
 						rs.getString("LETTER_DETAILS"), rs.getString("FROM_WHERE_DETAILS"), rs.getLong("DOI_BRANCH_ID"),

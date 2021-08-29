@@ -52,7 +52,7 @@ public class InwardController {
 				obj.setDateFormat(df);
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
-				
+
 			} else {
 				jsonobjectFormat = new JsonObjectFormat("No data entered", false, "");
 				ObjectMapper obj = new ObjectMapper();
@@ -66,15 +66,35 @@ public class InwardController {
 			return ResponseEntity.internalServerError().body(customStr);
 		}
 	}
-	
+
 	@GetMapping("/maxInwardNo")
 	public ResponseEntity<String> getMaxInwardNumber() throws JsonProcessingException {
 
 		JsonObjectFormat jsonobjectFormat;
-		
+
 		try {
-			Long maxInward = this.service.getMaxInwardNumber();
+			List<String> maxInward = this.service.getLatestInwardNumber();
+			System.out.println(maxInward);
 			jsonobjectFormat = new JsonObjectFormat("Fetched data successfully", true, maxInward);
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.ok().body(customStr);
+		} catch (Exception e) {
+			jsonobjectFormat = new JsonObjectFormat("Unable to fetch data", false, "");
+			ObjectMapper obj = new ObjectMapper();
+			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+			return ResponseEntity.internalServerError().body(customStr);
+		}
+	}
+
+	@GetMapping("/bankBranches/")
+	public ResponseEntity<String> getBankBranches() throws JsonProcessingException {
+		JsonObjectFormat jsonobjectFormat;
+
+		try {
+			Map<String, List<String>> bankBranchNamesByBank = this.service.getBankBranchNamesByBank();
+
+			jsonobjectFormat = new JsonObjectFormat("Fetched data successfully", true, bankBranchNamesByBank);
 			ObjectMapper obj = new ObjectMapper();
 			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 			return ResponseEntity.ok().body(customStr);

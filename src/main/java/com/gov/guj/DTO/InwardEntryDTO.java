@@ -22,11 +22,12 @@ public class InwardEntryDTO {
 	private String from_where_details;
 	private String branch_name;
 	private String doi_employee_name;
+	private String reference_no;
 
 	public InwardEntryDTO() {
 		super();
 	}
-	
+
 	@Override
 	public String toString() {
 		return "InwardEntryDTO [inward_no=" + inward_no + ", inward_dt=" + inward_dt + ", letter_type=" + letter_type
@@ -37,7 +38,7 @@ public class InwardEntryDTO {
 
 	public InwardEntryDTO(String inward_id, String inward_no, LocalDate inward_dt, String letter_type, String letter_no,
 			LocalDate letter_dt, String letter_details, String from_where_details, String branch_name,
-			String doi_employee_name) {
+			String doi_employee_name, String reference_no) {
 		super();
 		this.inward_id = inward_id;
 		this.inward_no = inward_no;
@@ -49,6 +50,7 @@ public class InwardEntryDTO {
 		this.from_where_details = from_where_details;
 		this.branch_name = branch_name;
 		this.doi_employee_name = doi_employee_name;
+		this.reference_no = reference_no;
 	}
 
 	public String getInward_id() {
@@ -129,6 +131,14 @@ public class InwardEntryDTO {
 
 	public void setDoi_employee_name(String doi_employee_name) {
 		this.doi_employee_name = doi_employee_name;
+	}
+
+	public String getReference_no() {
+		return reference_no;
+	}
+
+	public void setReference_no(String reference_no) {
+		this.reference_no = reference_no;
 	}
 
 }
