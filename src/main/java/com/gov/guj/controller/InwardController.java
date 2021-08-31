@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +27,7 @@ import com.gov.guj.DTO.InwardListingResponseDTO;
 import com.gov.guj.DTO.InwardUpdateEntryDTO;
 import com.gov.guj.model.JsonObjectFormat;
 import com.gov.guj.model.Tdoi_inward_entry;
+import com.gov.guj.service.BankService;
 import com.gov.guj.service.InwardService;
 
 @RestController
@@ -35,6 +37,9 @@ public class InwardController {
 
 	@Autowired
 	InwardService service;
+	
+	@Autowired
+	BankService bankservice;
 
 	@PostMapping("/save")
 	public ResponseEntity<String> submitEntry(@RequestBody List<InwardEntryDTO> inwardEntryDTO)
@@ -87,13 +92,12 @@ public class InwardController {
 		}
 	}
 
-	@GetMapping("/bankBranches/")
+	@GetMapping("/bankBranches")
 	public ResponseEntity<String> getBankBranches() throws JsonProcessingException {
+		System.out.println("Called Controller");
 		JsonObjectFormat jsonobjectFormat;
-
 		try {
-			Map<String, List<String>> bankBranchNamesByBank = this.service.getBankBranchNamesByBank();
-
+			List bankBranchNamesByBank = this.bankservice.getBankBranchNamesByBank();
 			jsonobjectFormat = new JsonObjectFormat("Fetched data successfully", true, bankBranchNamesByBank);
 			ObjectMapper obj = new ObjectMapper();
 			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);

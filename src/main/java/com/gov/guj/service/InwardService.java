@@ -30,15 +30,12 @@ import com.gov.guj.repository.InwardRepository;
 public class InwardService {
 
 	private InwardRepository inwardRepository;
-	private BankRepository bankRepository;
 	private ModelMapper mapper;
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public InwardService(InwardRepository inwardRepository, BankRepository bankRepository, ModelMapper mapper,
-			JdbcTemplate jdbcTemplate) {
+	public InwardService(InwardRepository inwardRepository, ModelMapper mapper, JdbcTemplate jdbcTemplate) {
 		this.inwardRepository = inwardRepository;
-		this.bankRepository = bankRepository;
 		this.mapper = mapper;
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -57,21 +54,6 @@ public class InwardService {
 
 	public List<String> getLatestInwardNumber() {
 		return inwardRepository.getLatestInwardNumber();
-	}
-
-	public Map<String, List<String>> getBankBranchNamesByBank() {
-		Map<String, List<String>> bankBranchList = new HashMap<>();
-		Iterable<Ms_bank> ms_bank = this.bankRepository.findAll();
-
-		ms_bank.forEach(bank -> {
-			List<String> bankBranchName = new ArrayList<>();
-			bank.getBank_branches().forEach(bankBranch -> {
-				bankBranchName.add(bankBranch.getBranch_name());
-			});
-			bankBranchList.put(bank.getBank_name(), bankBranchName);
-		});
-
-		return bankBranchList;
 	}
 
 	public List<InwardListingResponseDTO> getInwardEntryByFieldName(Map<String, String> inwardEntry) {

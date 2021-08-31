@@ -144,4 +144,4 @@ public class OutwardListingResponseDTO {
 	}
 
 }
-//http://localhost:4200/#/doi/outward/outward-entry
+//http://localhost:4200/#/doi/inward/inward-entry
