@@ -25,7 +25,7 @@ public class BankService {
 	public BankService(BankRepository bankRepository) {
 		this.bankRepository = bankRepository;
 	}
-
+	
 	public List getBankBranchNamesByBank() {
 
 		JSONArray bankDetails = new JSONArray();

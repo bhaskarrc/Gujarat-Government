@@ -32,6 +32,9 @@ public class Tdoi_inward_entry {
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate inward_dt = LocalDate.now();
 
+	@Column(name = "INWARD_TYPE", length = 10)
+	private String inward_type = "xxxxx";
+
 	@NotNull
 	@Column(name = "LETTER_TYPE_ID")
 	private long letter_type_id = 0;
@@ -98,6 +101,25 @@ public class Tdoi_inward_entry {
 	@Column(name = "UPDATED_BY_POST")
 	private long updated_by_post = 0;
 
+	@Column(name = "CHEQUE_NO")
+	private long cheque_no = 0;
+
+	@Column(name = "CHEQUE_TYPE")
+	private String cheque_type = "xxxxxx";
+
+	@Column(name = "AMOUNT")
+	private Double amount = 0.0;
+
+	@Column(name = "CHEQUE_DT")
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDate cheque_dt = LocalDate.now();
+
+	@Column(name = "BANK_NAME")
+	private String bank_name = "xxxx";
+
+	@Column(name = "BANK_BRANCH_NAME")
+	private String bank_branch_name = "xxxx";
+
 	@Override
 	public String toString() {
 		return "Tdoi_inward_entry [inward_id=" + inward_id + ", inward_no=" + inward_no + ", inward_dt=" + inward_dt
@@ -107,22 +129,27 @@ public class Tdoi_inward_entry {
 				+ ", doi_employee_name=" + doi_employee_name + ", reference_no=" + reference_no + ", reference_dt="
 				+ reference_dt + ", active_status=" + active_status + ", created_date=" + created_date + ", created_by="
 				+ created_by + ", created_by_post=" + created_by_post + ", updated_date=" + updated_date
-				+ ", updated_by=" + updated_by + ", updated_by_post=" + updated_by_post + "]";
+				+ ", updated_by=" + updated_by + ", updated_by_post=" + updated_by_post + ", cheque_no=" + cheque_no
+				+ ", cheque_type=" + cheque_type + ", amount=" + amount + ", cheque_dt=" + cheque_dt + ", bank_name="
+				+ bank_name + ", bank_branch_name=" + bank_branch_name + "]";
 	}
 
 	public Tdoi_inward_entry() {
 		super();
 	}
 
-	public Tdoi_inward_entry(Long inward_id, String inward_no, LocalDate inward_dt, long letter_type_id,
-			String letter_type, String letter_no, LocalDate letter_dt, String letter_details, String from_where_details,
-			long doi_branch_id, long doi_employee_id, String doi_employee_name, String reference_no,
-			LocalDateTime reference_dt, short active_status, LocalDateTime created_date, long created_by,
-			long created_by_post, LocalDateTime updated_date, long updated_by, long updated_by_post) {
+	public Tdoi_inward_entry(Long inward_id, String inward_no, LocalDate inward_dt, String inward_type,
+			long letter_type_id, String letter_type, String letter_no, LocalDate letter_dt, String letter_details,
+			String from_where_details, long doi_branch_id, long doi_employee_id, String doi_employee_name,
+			String reference_no, LocalDateTime reference_dt, short active_status, LocalDateTime created_date,
+			long created_by, long created_by_post, LocalDateTime updated_date, long updated_by, long updated_by_post,
+			long cheque_no, String cheque_type, Double amount, LocalDate cheque_dt, String bank_name,
+			String bank_branch_name) {
 		super();
 		this.inward_id = inward_id;
 		this.inward_no = inward_no;
 		this.inward_dt = inward_dt;
+		this.inward_type = inward_type;
 		this.letter_type_id = letter_type_id;
 		this.letter_type = letter_type;
 		this.letter_no = letter_no;
@@ -141,6 +168,12 @@ public class Tdoi_inward_entry {
 		this.updated_date = updated_date;
 		this.updated_by = updated_by;
 		this.updated_by_post = updated_by_post;
+		this.cheque_no = cheque_no;
+		this.cheque_type = cheque_type;
+		this.amount = amount;
+		this.cheque_dt = cheque_dt;
+		this.bank_name = bank_name;
+		this.bank_branch_name = bank_branch_name;
 	}
 
 	public Long getInward_id() {
@@ -165,6 +198,14 @@ public class Tdoi_inward_entry {
 
 	public void setInward_dt(LocalDate inward_dt) {
 		this.inward_dt = inward_dt;
+	}
+
+	public String getInward_type() {
+		return inward_type;
+	}
+
+	public void setInward_type(String inward_type) {
+		this.inward_type = inward_type;
 	}
 
 	public long getLetter_type_id() {
@@ -309,6 +350,54 @@ public class Tdoi_inward_entry {
 
 	public void setUpdated_by_post(long updated_by_post) {
 		this.updated_by_post = updated_by_post;
+	}
+
+	public long getCheque_no() {
+		return cheque_no;
+	}
+
+	public void setCheque_no(long cheque_no) {
+		this.cheque_no = cheque_no;
+	}
+
+	public String getCheque_type() {
+		return cheque_type;
+	}
+
+	public void setCheque_type(String cheque_type) {
+		this.cheque_type = cheque_type;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public LocalDate getCheque_dt() {
+		return cheque_dt;
+	}
+
+	public void setCheque_dt(LocalDate cheque_dt) {
+		this.cheque_dt = cheque_dt;
+	}
+
+	public String getBank_name() {
+		return bank_name;
+	}
+
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+
+	public String getBank_branch_name() {
+		return bank_branch_name;
+	}
+
+	public void setBank_branch_name(String bank_branch_name) {
+		this.bank_branch_name = bank_branch_name;
 	}
 
 }

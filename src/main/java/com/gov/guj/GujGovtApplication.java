@@ -20,5 +20,5 @@ public class GujGovtApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GujGovtApplication.class, args);
 	}
-
+	
 }

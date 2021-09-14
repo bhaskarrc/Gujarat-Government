@@ -37,13 +37,14 @@ public class InwardController {
 
 	@Autowired
 	InwardService service;
-	
+
 	@Autowired
 	BankService bankservice;
 
 	@PostMapping("/save")
 	public ResponseEntity<String> submitEntry(@RequestBody List<InwardEntryDTO> inwardEntryDTO)
 			throws JsonProcessingException {
+		System.out.println(inwardEntryDTO);
 		JsonObjectFormat jsonobjectFormat;
 
 		try {
@@ -110,9 +111,10 @@ public class InwardController {
 		}
 	}
 
-	@PostMapping("/get")
+	@PostMapping("/getByFieldName")
 	public ResponseEntity<String> getUser(@RequestBody Map<String, String> inwardEntry) throws JsonProcessingException {
 		System.out.println(inwardEntry);
+		System.out.println(inwardEntry.isEmpty());
 
 		JsonObjectFormat jsonobjectFormat;
 
@@ -140,12 +142,15 @@ public class InwardController {
 				String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
 				return ResponseEntity.ok().body(customStr);
 			}
-		} catch (Exception e) {
-			jsonobjectFormat = new JsonObjectFormat("Unable to fetch data", false, "");
-			ObjectMapper obj = new ObjectMapper();
-			String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
-			return ResponseEntity.internalServerError().body(customStr);
-		}
+		}catch(
+
+	Exception e)
+	{
+		jsonobjectFormat = new JsonObjectFormat("Unable to fetch data", false, "");
+		ObjectMapper obj = new ObjectMapper();
+		String customStr = obj.writerWithDefaultPrettyPrinter().writeValueAsString(jsonobjectFormat);
+		return ResponseEntity.internalServerError().body(customStr);
+	}
 	}
 
 	@GetMapping("/get/{id}")
